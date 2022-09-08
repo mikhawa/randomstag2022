@@ -1,2 +1,5 @@
 # configuration
 config.php
+
+#fichiers inutiles
+/datas/coolcolden.mwb.bak
