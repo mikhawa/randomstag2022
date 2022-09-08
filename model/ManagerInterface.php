@@ -4,5 +4,5 @@ namespace model;
 
 interface ManagerInterface
 {
-    public function __construct(MyPDO $db);
+    public function __construct(\PDO $db);
 }
