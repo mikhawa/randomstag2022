@@ -1,7 +1,5 @@
 <?php
 
-namespace model;
-
 
 class AnneeModel extends AbstractModel
 {

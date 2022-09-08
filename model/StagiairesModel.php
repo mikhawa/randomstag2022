@@ -1,6 +1,5 @@
 <?php
 
-namespace model;
 
 class StagiairesModel extends AbstractModel
 {

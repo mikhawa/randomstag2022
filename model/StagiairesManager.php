@@ -1,6 +1,5 @@
 <?php
 
-namespace model;
 
 class StagiairesManager implements ManagerInterface
 {
@@ -12,9 +11,11 @@ class StagiairesManager implements ManagerInterface
         $this->connect = $db;
     }
 
-    public function SelectOnlyStagiairesByAnnee(int $idannee) : Array|String
+    public function SelectOnlyStagiairesByIdAnnee(int $idannee) : Array|String
     {
-        $sql = "SELECT * FROM stagiaires ORDER BY prenom ASC;";
+        $sql = "SELECT * FROM stagiaires
+                    WHERE annee_idannee = ?
+                    ORDER BY prenom ASC;";
         $prepare = $this->connect->prepare($sql);
 
         try {

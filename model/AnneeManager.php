@@ -1,6 +1,5 @@
 <?php
 
-namespace model;
 
 class AnneeManager implements ManagerInterface
 {
