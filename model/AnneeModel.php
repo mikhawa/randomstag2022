@@ -2,7 +2,6 @@
 
 namespace model;
 
-use model\AbstractModel;
 
 class AnneeModel extends AbstractModel
 {
