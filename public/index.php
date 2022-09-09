@@ -1,11 +1,11 @@
 <?php
 session_start();
 
-require_once "config.php";
+require_once "../config.php";
 
 // Personal autoload
 spl_autoload_register(function ($class) {
-    include_once 'model/' . str_replace('\\', '/', $class) . '.php';
+    include_once '../model/' . str_replace('\\', '/', $class) . '.php';
 });
 
 // connect with PDO
@@ -18,5 +18,5 @@ try {
 if(isset($_SESSION['myidsession'])&& $_SESSION['myidsession'] == session_id()){
 
 }else{
-    require "controller/publicController.php";
+    require "../controller/publicController.php";
 }
