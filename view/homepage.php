@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<div class="col-lg-8 mx-auto p-3 py-md-5">
+<div class="col-lg-10 mx-auto p-3 py-md-5">
 <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
     <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
         <img src="img/logo.png" width="45" height="40"/>
@@ -18,8 +18,47 @@
 </header>
 
 <main>
-    <h2>Groupe Webdev 2022-2023</h2>
+    <h1 class="h2">Groupe Webdev 2022-2023</h1>
     <p class="fs-5 col-md-8">Une question, un.e stagiaire, une réponse !</p>
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <button type="button" class="btn btn-primary">Nouvelle question !</button>
+    </div>
+    <h2 class="h5">Statistiques Globales</h2>
+    <p></p>
+    <h2 class="h5">Statistiques Personnelles</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">N°</th>
+            <th scope="col">Prénom N.</th>
+            <th scope="col">NB Question</th>
+            <th scope="col">Réponse +=2</th>
+            <th scope="col">Réponse ++</th>
+            <th scope="col">Mauvaise --</th>
+            <th scope="col">Absent --</th>
+            <th scope="col">% sortie</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+        </tr>
+        <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+        </tr>
+        <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+        </tr>
+        </tbody>
+    </table>
     <pre><?php var_dump($recupAllStagiaires); ?></pre>
 
 </main>
