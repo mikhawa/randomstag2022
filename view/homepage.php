@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<div class="col-lg-10 mx-auto p-3 py-md-5">
+<div class="col-lg-11 mx-auto p-3 py-md-5">
 <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
     <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
         <img src="img/logo.png" width="45" height="40"/>
@@ -36,30 +36,32 @@
             <th scope="col">Réponse ++</th>
             <th scope="col">Mauvaise --</th>
             <th scope="col">Absent --</th>
+            <th scope="col">Total</th>
             <th scope="col">% sortie</th>
         </tr>
         </thead>
         <tbody>
+        <?php
+        $i=1;
+        foreach($recupAllStagiaires as $item):
+        ?>
         <tr>
-            <th scope="row">1</th>
+            <th scope="row"><?=$i?></th>
+            <td><?= $item["prenom"]." ".substr($item['nom'],0,1) ?></td>
+            <td>0</td>
+            <td>0 (100%)</td>
             <td>Mark</td>
             <td>Otto</td>
             <td>@mdo</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
         </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-        </tr>
+        <?php
+        $i++;
+        endforeach;
+        ?>
         </tbody>
     </table>
-    <pre><?php var_dump($recupAllStagiaires); ?></pre>
 
 </main>
 <footer class="pt-5 my-5 text-center text-muted border-top">
