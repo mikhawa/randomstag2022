@@ -4,7 +4,7 @@
 class StagiairesModel extends AbstractModel
 {
     protected int $idstagiaires;
-    protected int|null $machine;
+    protected int $points;
     protected string $nom;
     protected string $prenom;
     protected int $annee_idannee;
@@ -30,18 +30,18 @@ class StagiairesModel extends AbstractModel
     /**
      * @return int|null
      */
-    public function getMachine(): ?int
+    public function getPoints(): ?int
     {
-        return $this->machine;
+        return $this->points;
     }
 
     /**
-     * @param int|null $machine
+     * @param int $points
      * @return StagiairesModel
      */
-    public function setMachine(?int $machine): StagiairesModel
+    public function setPoints(?int $points): StagiairesModel
     {
-        $this->machine = $machine;
+        $this->points = $points;
         return $this;
     }
 
