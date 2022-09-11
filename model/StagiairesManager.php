@@ -14,11 +14,10 @@ class StagiairesManager implements ManagerInterface
     public function SelectOnlyStagiairesByIdAnnee(int $idannee) : Array|String
     {
         $sql = "SELECT s.*,  
+                (SELECT COUNT(r.idreponseslog) FROM reponseslog r WHERE r.stagiaires_idstagiaires = s.idstagiaires AND r.reponseslogcol = 3) AS vgoog
                     FROM stagiaires s
-                    LEFT JOIN reponseslog r
-                        ON s.idstagiaires = r.stagiaires_idstagiaires
                     WHERE s.annee_idannee = ?
-                    ORDER BY s.prenom ASC;";
+                    ORDER BY s.points ASC;";
         $prepare = $this->connect->prepare($sql);
 
         try {
@@ -27,7 +26,7 @@ class StagiairesManager implements ManagerInterface
             return $prepare->fetchAll(PDO::FETCH_ASSOC);
 
         } catch (Exception $e) {
-
+            echo $e->getMessage();
             return $e->getMessage();
         }
     }
