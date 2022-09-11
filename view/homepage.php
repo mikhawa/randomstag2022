@@ -31,11 +31,11 @@
         <tr>
             <th scope="col">N°</th>
             <th scope="col">Prénom N.</th>
-            <th scope="col">NB Question</th>
-            <th scope="col">Réponse +=2</th>
-            <th scope="col">Réponse ++</th>
-            <th scope="col">Mauvaise --</th>
-            <th scope="col">Absent --</th>
+            <th scope="col">Points</th>
+            <th scope="col">Réponses +=2</th>
+            <th scope="col">Réponses ++</th>
+            <th scope="col">Mauvaises --</th>
+            <th scope="col">Absents --</th>
             <th scope="col">Total</th>
             <th scope="col">% sortie</th>
         </tr>
@@ -48,12 +48,40 @@
         <tr>
             <th scope="row"><?=$i?></th>
             <td><?= $item["prenom"]." ".substr($item['nom'],0,1) ?></td>
-            <td>0</td>
-            <td>0 (100%)</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
+            <td><?= $item["points"]?></td>
+            <td><?php
+                echo $item["vgood"]." (";
+                if(!empty($item["vgood"])):
+                    echo (($item["vgood"]/$item["sorties"])*100)." %)";
+                else:
+                    echo "0 %)";
+                endif;
+                ?></td>
+            <td><?php
+                echo $item["good"]." (";
+                if(!empty($item["good"])):
+                    echo (($item["good"]/$item["sorties"])*100)." %)";
+                else:
+                    echo "0 %)";
+                endif;
+                ?></td>
+            <td><?php
+                echo $item["nogood"]." (";
+                if(!empty($item["nogood"])):
+                    echo (($item["nogood"]/$item["sorties"])*100)." %)";
+                else:
+                    echo "0 %)";
+                endif;
+                ?></td>
+            <td><?php
+                echo $item["absent"]." (";
+                if(!empty($item["absent"])):
+                    echo (($item["absent"]/$item["sorties"])*100)." %)";
+                else:
+                    echo "0 %)";
+                endif;
+                ?></td>
+            <td><?= $item["sorties"]?></td>
             <td>@mdo</td>
         </tr>
         <?php
