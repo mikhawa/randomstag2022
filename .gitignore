@@ -6,6 +6,7 @@ config.php
 
 # fichiers inutiles
 /datas/coolcolden.mwb.bak
+/datas/coolcoldenV2.mwb.bak
 
 # Données critiques
 /datas/coolcolden-structure-datas.sql
