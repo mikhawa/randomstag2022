@@ -21,7 +21,7 @@
     <h1 class="h2">Groupe Webdev 2022-2023</h1>
     <p class="fs-5 col-md-8">Une question, un.e stagiaire, une réponse !</p>
     <div class="d-grid gap-2 col-6 mx-auto">
-        <button type="button" class="btn btn-primary">Nouvelle question !</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Nouvelle question !</button>
     </div>
     <h2 class="h5">Statistiques Globales</h2>
     <p></p>
@@ -75,6 +75,31 @@
 <footer class="pt-5 my-5 text-center text-muted border-top">
     Michaël Pitz - <a href="https://www.cf2m.be" target="_blank" title="Centre de formation CF2m">CF2m</a> &copy; <?=date("Y")?>
 </footer>
+</div>
+
+<!--
+Modal
+documentation:
+https://getbootstrap.com/docs/5.2/components/modal/
+-->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Question pour</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Il suffit de répondre à la question
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal">Super réponse</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Bonne réponse</button>
+                <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Et non...</button>
+                <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Absent.e</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 
