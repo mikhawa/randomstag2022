@@ -4,5 +4,9 @@
 # configuration
 config.php
 
-#fichiers inutiles
+# fichiers inutiles
 /datas/coolcolden.mwb.bak
+
+# Données critiques
+/datas/coolcolden-structure-datas.sql
+
