@@ -6,7 +6,7 @@ class Calcul
     {
         $retour = $valeur1." (";
         if(!empty($valeur1)):
-            $retour .= (($valeur1/$valeur2)*100)." %)";
+            $retour .= round((($valeur1/$valeur2)*100),2)." %)";
         else:
             $retour .= "0 %)";
         endif;

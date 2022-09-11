@@ -21,7 +21,7 @@ class StagiairesManager implements ManagerInterface
                 (SELECT COUNT(r.idreponseslog) FROM reponseslog r WHERE r.stagiaires_idstagiaires = s.idstagiaires) AS sorties
                     FROM stagiaires s
                     WHERE s.annee_idannee = ?
-                    ORDER BY s.points ASC;";
+                    ORDER BY s.points DESC;";
         $prepare = $this->connect->prepare($sql);
 
         try {

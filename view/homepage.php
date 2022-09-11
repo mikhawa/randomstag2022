@@ -50,36 +50,16 @@
             <td><?= $item["prenom"]." ".substr($item['nom'],0,1) ?></td>
             <td><?= $item["points"]?></td>
             <td><?php
-                echo $item["vgood"]." (";
-                if(!empty($item["vgood"])):
-                    echo (($item["vgood"]/$item["sorties"])*100)." %)";
-                else:
-                    echo "0 %)";
-                endif;
+                echo Calcul::Pourcent($item["vgood"],$item["sorties"]);
                 ?></td>
             <td><?php
-                echo $item["good"]." (";
-                if(!empty($item["good"])):
-                    echo (($item["good"]/$item["sorties"])*100)." %)";
-                else:
-                    echo "0 %)";
-                endif;
+                echo Calcul::Pourcent($item["good"],$item["sorties"]);
                 ?></td>
             <td><?php
-                echo $item["nogood"]." (";
-                if(!empty($item["nogood"])):
-                    echo (($item["nogood"]/$item["sorties"])*100)." %)";
-                else:
-                    echo "0 %)";
-                endif;
+                echo Calcul::Pourcent($item["nogood"],$item["sorties"]);
                 ?></td>
             <td><?php
-                echo $item["absent"]." (";
-                if(!empty($item["absent"])):
-                    echo (($item["absent"]/$item["sorties"])*100)." %)";
-                else:
-                    echo "0 %)";
-                endif;
+                echo Calcul::Pourcent($item["absent"],$item["sorties"]);
                 ?></td>
             <td><?= $item["sorties"]?></td>
             <td>@mdo</td>
