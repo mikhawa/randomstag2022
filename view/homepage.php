@@ -24,7 +24,11 @@
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Nouvelle question !</button>
     </div>
     <h2 class="h5">Statistiques Globales</h2>
-    <p></p>
+    <p>Nombre de questions : <strong><?=$recupStats['nbquestions']?></strong> </p>
+    <p>Nombre de très bonnes réponses : <strong><?=Calcul::Pourcent($recupStats["nb3"],$recupStats["nbquestions"])?></strong> </p>
+    <p>Nombre de bonnes réponses : <strong><?=Calcul::Pourcent($recupStats["nb2"],$recupStats["nbquestions"])?></strong> </p>
+    <p>Nombre de mauvaises réponses : <strong><?=Calcul::Pourcent($recupStats["nb1"],$recupStats["nbquestions"])?></strong> </p>
+    <p>Nombre d'absences' : <strong><?=Calcul::Pourcent($recupStats["nb0"],$recupStats["nbquestions"])?></strong> </p>
     <h2 class="h5">Statistiques Personnelles</h2>
     <table class="table table-striped">
         <thead>

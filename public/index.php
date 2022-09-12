@@ -10,7 +10,7 @@ spl_autoload_register(function ($class) {
 
 // connect with PDO
 try {
-    $idannee = new PDO('mysql:dbname=' . DB_NAME . ';host=' . DB_HOST . ';charset=' . DB_CHARSET . ';port=' . DB_PORT, DB_LOGIN, DB_PWD);
+    $connect = new PDO('mysql:dbname=' . DB_NAME . ';host=' . DB_HOST . ';charset=' . DB_CHARSET . ';port=' . DB_PORT, DB_LOGIN, DB_PWD);
 } catch (Exception $e) {
     die($e->getMessage());
 }

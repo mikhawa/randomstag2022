@@ -1,7 +1,7 @@
 <?php
 
 
-class StagiairesManager implements ManagerInterface
+class StatistiquesanneeManager implements ManagerInterface
 {
 
     protected \PDO $connect;
@@ -19,7 +19,7 @@ class StagiairesManager implements ManagerInterface
         try {
 
             $prepare->execute([$idannee]);
-            return $prepare->fetchAll(PDO::FETCH_ASSOC);
+            return $prepare->fetch(PDO::FETCH_ASSOC);
 
         } catch (Exception $e) {
 
