@@ -78,13 +78,19 @@ class StagiairesManager implements ManagerInterface
         switch($newPoint):
             case "tbien":
                 $points +=2;
+                $rep = 3;
             break;
             case "bien":
                 $points ++;
+                $rep = 2;
             break;
             case "pbien":
+                $points --;
+                $rep = 1;
+                break;
             default:
                 $points --;
+                $rep = 0;
         endswitch;
         
         // update des points du stagiaires
@@ -94,9 +100,12 @@ class StagiairesManager implements ManagerInterface
 
 
         // insertion des logs
-        
+            $sql = "INSERT INTO reponseslog (reponseslogcol,stagiaires_idstagiaires) VALUES (?,?);";
+            $prepare = $this->connect->prepare($sql);
+            $prepare->execute([$rep,$idstagiaire]);
 
-        $this->connect->commit();
+
+        // $this->connect->commit();
 
         }catch(Exception $e){
             $this->connect->rollBack();
