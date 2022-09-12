@@ -30,8 +30,9 @@ class StagiairesManager implements ManagerInterface
             return $prepare->fetchAll(PDO::FETCH_ASSOC);
 
         } catch (Exception $e) {
-            echo $e->getMessage();
+
             return $e->getMessage();
+
         }
     }
 }
