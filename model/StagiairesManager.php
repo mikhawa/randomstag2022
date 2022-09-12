@@ -35,4 +35,27 @@ class StagiairesManager implements ManagerInterface
 
         }
     }
+
+    public function SelectOneRandomStagiairesByIdAnnee(int $idannee) : Array|String
+    {
+        $sql = "SELECT s.*          
+                    FROM stagiaires s
+                    WHERE s.annee_idannee = ?
+                    ORDER BY RAND()
+                    LIMIT 1;
+                ";
+        $prepare = $this->connect->prepare($sql);
+
+        try {
+
+            $prepare->execute([$idannee]);
+            return $prepare->fetch(PDO::FETCH_ASSOC);
+
+        } catch (Exception $e) {
+
+            return $e->getMessage();
+
+        }
+    }
+
 }

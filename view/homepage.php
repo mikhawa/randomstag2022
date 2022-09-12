@@ -57,7 +57,7 @@
         ?>
         <tr>
             <th scope="row"><?=$i?></th>
-            <td><?= $item["prenom"]." ".substr($item['nom'],0,1) ?></td>
+            <td><?= $item["prenom"]." ".substr($item['nom'],0,1) ?>.</td>
             <td><?= $item["points"]?></td>
             <td><?php
                 echo Calcul::Pourcent($item["vgood"],$item["sorties"]);
@@ -96,22 +96,27 @@ https://getbootstrap.com/docs/5.2/components/modal/
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Question pour</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Question pour <?= $recupOneStagiaire["prenom"]." ".substr($recupOneStagiaire['nom'],0,1)?>.</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 Il suffit de répondre à la question
             </div>
+            <div id="idstagiaire" class="visually-hidden"><?=$recupOneStagiaire['idstagiaires']?></div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-bs-dismiss="modal">Super réponse</button>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Bonne réponse</button>
-                <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Et non...</button>
-                <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Absent.e</button>
+                <button type="button" id="b3" class="btn btn-success" data-bs-dismiss="modal">Super réponse</button>
+                <button type="button" id="b2" class="btn btn-primary" data-bs-dismiss="modal">Bonne réponse</button>
+                <button type="button" id="b1" class="btn btn-warning" data-bs-dismiss="modal">Et non...</button>
+                <button type="button" id="b0" class="btn btn-dark" data-bs-dismiss="modal">Absent.e</button>
             </div>
         </div>
     </div>
 </div>
+<script>
+document.getElementById('b3').onclick = () => {
 
+}
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
