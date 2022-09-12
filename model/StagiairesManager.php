@@ -58,4 +58,50 @@ class StagiairesManager implements ManagerInterface
         }
     }
 
+    public function updatePointsStagiaireById(int $idstagiaire, string $newPoint)
+    {
+
+        // Début de transaction
+        $this->connect->beginTransaction();
+
+        try{
+
+        // Sélection des points du stagiaire
+        $sql = "SELECT points FROM stagiaires WHERE idstagiaires = ?";
+        $prepare = $this->connect->prepare($sql);
+        
+        $prepare->execute([$idstagiaire]);
+        $stagiaire = $prepare->fetch(\PDO::FETCH_ASSOC);
+        $points = $stagiaire['points'];
+
+        // gestion des points
+        switch($newPoint):
+            case "tbien":
+                $points +=2;
+            break;
+            case "bien":
+                $points ++;
+            break;
+            case "pbien":
+            default:
+                $points --;
+        endswitch;
+        
+        // update des points du stagiaires
+        $sql = "UPDATE stagiaires SET points = ? WHERE idstagiaires = ?";
+        $prepare = $this->connect->prepare($sql);
+        $prepare->execute([$points, $idstagiaire]);
+
+
+        // insertion des logs
+        
+
+        $this->connect->commit();
+
+        }catch(Exception $e){
+            $this->connect->rollBack();
+            return $e->getMessage();
+        }
+    }
+
 }
