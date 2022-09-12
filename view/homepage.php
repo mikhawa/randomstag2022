@@ -80,7 +80,7 @@
         ?>
         </tbody>
     </table>
-
+    <div id="test"></div>
 </main>
 <footer class="pt-5 my-5 text-center text-muted border-top">
     Michaël Pitz - <a href="https://www.cf2m.be" target="_blank" title="Centre de formation CF2m">CF2m</a> &copy; <?=date("Y")?>
@@ -103,6 +103,7 @@ https://getbootstrap.com/docs/5.2/components/modal/
                 Il suffit de répondre à la question
             </div>
             <div id="idstagiaire" class="visually-hidden"><?=$recupOneStagiaire['idstagiaires']?></div>
+            <div id="idannee" class="visually-hidden">1</div>
             <div class="modal-footer">
                 <button type="button" id="b3" class="btn btn-success" data-bs-dismiss="modal">Super réponse</button>
                 <button type="button" id="b2" class="btn btn-primary" data-bs-dismiss="modal">Bonne réponse</button>
@@ -112,10 +113,32 @@ https://getbootstrap.com/docs/5.2/components/modal/
         </div>
     </div>
 </div>
-<script>
-document.getElementById('b3').onclick = () => {
 
-}
+<script>
+    const httpRequest = new XMLHttpRequest();
+    function onUpdate(idstag,idan,point){
+        httpRequest.onreadystatechange = () => {
+            if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+                document.getElementById("test").innerHTML = httpRequest.responseText;
+            }
+        }
+        httpRequest.open('POST', 'update.php', true);
+        httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        httpRequest.send("idstag="+idstag+
+            "&idan="+idan+"&points="+point);
+    }
+    document.getElementById('b3').onclick = () => {
+        onUpdate(document.getElementById("idstagiaire").textContent, document.getElementById("idannee").textContent, "tbien");
+    }
+    document.getElementById('b2').onclick = () => {
+        onUpdate(document.getElementById("idstagiaire").textContent, document.getElementById("idannee").textContent, "bien");
+    }
+    document.getElementById('b1').onclick = () => {
+        onUpdate(document.getElementById("idstagiaire").textContent, document.getElementById("idannee").textContent, "pbien");
+    }
+    document.getElementById('b0').onclick = () => {
+        onUpdate(document.getElementById("idstagiaire").textContent, document.getElementById("idannee").textContent, "absent");
+    }
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
