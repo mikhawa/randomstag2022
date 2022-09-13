@@ -65,6 +65,7 @@ if(isset($_GET['partie'])){
 
         $i++;
         endforeach;
+        sleep(1);
         echo $sortie;
     endif;
 
