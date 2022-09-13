@@ -22,11 +22,12 @@ $statsManager = new StatistiquesanneeManager($connect);
 
 
 $idan = (int) $_GET['idan'];
+
+$stats = $statsManager->SelectStatsByIdAnnee($idan);
+// var_dump($_GET);
 // si on a bien reçu le formulaire
 if(isset($_GET['partie'])){
     if($_GET['partie']=='general'):
-        $stats = $statsManager->SelectStatsByIdAnnee($idan);
-
         $sortie="<p>Nombre de questions : <strong>".$stats['nbquestions']."</strong> </p>
     <p>Nombre de très bonnes réponses : <strong>".Calcul::Pourcent($stats["nb3"],$stats["nbquestions"])."</strong> </p>
     <p>Nombre de bonnes réponses : <strong>".Calcul::Pourcent($stats["nb2"],$stats["nbquestions"])."</strong> </p>
@@ -36,7 +37,35 @@ if(isset($_GET['partie'])){
         echo $sortie;
 
         elseif($_GET['partie']=='equipe'):
-            echo "tasoeur";
+        $recupAllStagiaires = $stagiairesManager->SelectOnlyStagiairesByIdAnnee($idan);
+
+        $i=1;
+        $sortie="";
+        foreach($recupAllStagiaires as $item):
+
+        $sortie.="
+        <tr>
+            <th scope='row'>".$i."</th>
+            <td>".$item["prenom"]." ".substr($item['nom'],0,1)."</td>
+            <td>".$item["points"]."</td>
+            <td>". Calcul::Pourcent($item["vgood"],$item["sorties"])
+                ."</td>
+            <td>".
+                Calcul::Pourcent($item["good"],$item["sorties"])
+                ."</td>
+            <td>".
+                Calcul::Pourcent($item["nogood"],$item["sorties"])
+                ."</td>
+            <td>".
+                 Calcul::Pourcent($item["absent"],$item["sorties"])
+                ."</td>
+            <td>".$item["sorties"]."</td>
+            <td>".Calcul::Pourcent($item["sorties"],$stats['nbquestions'])."</td>
+        </tr>";
+
+        $i++;
+        endforeach;
+        echo $sortie;
     endif;
 
 }
