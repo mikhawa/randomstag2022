@@ -31,5 +31,5 @@ if(isset($_POST['idstag'])){
     // appel de la mise à jour du stagiaire
     $update = $stagiairesManager->updatePointsStagiaireById($idstag,$points,$stats);
     echo $update;
-
+    echo "Dernière mise à jour : ".date("Y-m-d H:i:s");
 }

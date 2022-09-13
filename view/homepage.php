@@ -120,12 +120,26 @@ https://getbootstrap.com/docs/5.2/components/modal/
         httpRequest.onreadystatechange = () => {
             if (httpRequest.readyState == 4 && httpRequest.status == 200) {
                 document.getElementById("test").innerHTML = httpRequest.responseText;
+                onLoadPage('statstotal','general');
             }
         }
         httpRequest.open('POST', 'update.php', true);
         httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         httpRequest.send("idstag="+idstag+
             "&idan="+idan+"&points="+point);
+    }
+    function onLoadPage(idLoad,Lurl){
+        httpRequest.onreadystatechange = () => {
+            if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+                document.getElementById(idLoad).innerHTML = httpRequest.responseText;
+            }else{
+                document.getElementById(idLoad).innerHTML = "<img src='img/load.gif' alt='loading' />";
+            }
+        }
+        let idan = document.getElementById('idannee').textContent;
+        httpRequest.open('POST', 'load.php?partie='+Lurl+'&idan='+idan+'&cache='+ (new Date()).getTime(), true);
+        httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        httpRequest.send(null);
     }
     document.getElementById('b3').onclick = () => {
         onUpdate(document.getElementById("idstagiaire").textContent, document.getElementById("idannee").textContent, "tbien");
