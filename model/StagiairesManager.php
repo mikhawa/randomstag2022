@@ -58,7 +58,7 @@ class StagiairesManager implements ManagerInterface
         }
     }
 
-    public function updatePointsStagiaireById(int $idstagiaire, string $newPoint)
+    public function updatePointsStagiaireById(int $idstagiaire, string $newPoint, array $statGolbal)
     {
 
         // Début de transaction
@@ -74,26 +74,36 @@ class StagiairesManager implements ManagerInterface
         $stagiaire = $prepare->fetch(\PDO::FETCH_ASSOC);
         $points = $stagiaire['points'];
 
+        // pour l'update des stats globales
+        $statGolbal['nbquestions']++;
+
         // gestion des points
         switch($newPoint):
             case "tbien":
+                // stats global
+                $statGolbal['nb3']++;
+                // points stagiaire
                 $points +=2;
+                // log stagiaire
                 $rep = 3;
             break;
             case "bien":
+                $statGolbal['nb2']++;
                 $points ++;
                 $rep = 2;
             break;
             case "pbien":
+                $statGolbal['nb1']++;
                 $points --;
                 $rep = 1;
                 break;
             default:
+                $statGolbal['nb0']++;
                 $points --;
                 $rep = 0;
         endswitch;
         
-        // update des points du stagiaires
+        // update des points du stagiaire
         $sql = "UPDATE stagiaires SET points = ? WHERE idstagiaires = ?";
         $prepare = $this->connect->prepare($sql);
         $prepare->execute([$points, $idstagiaire]);
@@ -104,8 +114,19 @@ class StagiairesManager implements ManagerInterface
             $prepare = $this->connect->prepare($sql);
             $prepare->execute([$rep,$idstagiaire]);
 
+        // update des stats globales
+            $sql = "UPDATE statistiquesannee SET nbquestions = ?, nb0=?, nb1=?, nb2=?, nb3=?
+                    WHERE annee_idannee = ?";
+            $prepare = $this->connect->prepare($sql);
+            $prepare->execute([$statGolbal['nbquestions'],
+                $statGolbal['nb0'],
+                $statGolbal['nb1'],
+                $statGolbal['nb2'],
+                $statGolbal['nb3'],
+                $statGolbal['annee_idannee']
+            ]);
 
-        // $this->connect->commit();
+        $this->connect->commit();
 
         }catch(Exception $e){
             $this->connect->rollBack();

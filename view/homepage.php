@@ -50,7 +50,7 @@
             <th scope="col">% sortie</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody id="updateAllStagiaires">
         <?php
         $i=1;
         foreach($recupAllStagiaires as $item):
