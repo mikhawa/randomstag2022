@@ -94,8 +94,8 @@ https://getbootstrap.com/docs/5.2/components/modal/
 -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
+        <div id="hasard" class="modal-content">
+            <div  class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">Question pour <?= $recupOneStagiaire["prenom"]." ".substr($recupOneStagiaire['nom'],0,1)?>.</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -123,8 +123,9 @@ https://getbootstrap.com/docs/5.2/components/modal/
         httpRequest.onreadystatechange = () => {
             if (httpRequest.readyState == 4 && httpRequest.status == 200) {
                 document.getElementById("test").innerHTML = httpRequest.responseText;
-                onLoadPage('statstotal','general',httpRequest2);
-                onLoadPage('updateAllStagiaires','equipe',httpRequest3);
+                onLoadPage('hasard','hasard',httpRequest2);
+                onLoadPage('statstotal','general',httpRequest3);
+                onLoadPage('updateAllStagiaires','equipe',httpRequest4);
             }
         }
         httpRequest.open('POST', 'update.php', true);
@@ -141,7 +142,7 @@ https://getbootstrap.com/docs/5.2/components/modal/
                 document.getElementById(idLoad).innerHTML = "<img src='img/load.gif' alt='loading' />";
             }
         }
-        let idan = document.getElementById('idannee').textContent;
+        let idan = 1;
         num.open('POST', 'load.php?partie='+Lurl+'&idan='+idan+'&cache='+ (new Date()).getTime(), true);
         num.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         num.send(null);
