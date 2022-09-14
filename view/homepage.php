@@ -94,16 +94,18 @@ https://getbootstrap.com/docs/5.2/components/modal/
 -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <div id="hasard" class="modal-content">
+        <div class="modal-content">
+            <div id="hasard">
             <div  class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">Question pour <?= $recupOneStagiaire["prenom"]." ".substr($recupOneStagiaire['nom'],0,1)?>.</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+                <div id="idstagiaire" class="visually-hidden"><?=$recupOneStagiaire['idstagiaires']?></div>
+                <div id="idannee" class="visually-hidden">1</div>
             </div>
             <div class="modal-body">
                 Il suffit de répondre à la question
             </div>
-            <div id="idstagiaire" class="visually-hidden"><?=$recupOneStagiaire['idstagiaires']?></div>
-            <div id="idannee" class="visually-hidden">1</div>
+
             <div class="modal-footer">
                 <button type="button" id="b3" class="btn btn-success" data-bs-dismiss="modal">Super réponse</button>
                 <button type="button" id="b2" class="btn btn-primary" data-bs-dismiss="modal">Bonne réponse</button>
@@ -145,7 +147,7 @@ https://getbootstrap.com/docs/5.2/components/modal/
         let idan = 1;
         num.open('POST', 'load.php?partie='+Lurl+'&idan='+idan+'&cache='+ (new Date()).getTime(), true);
         num.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        num.send(null);
+        num.send("temps="+(new Date()).getTime(), true);
     }
     document.getElementById('b3').onclick = () => {
         onUpdate(document.getElementById("idstagiaire").textContent, document.getElementById("idannee").textContent, "tbien");

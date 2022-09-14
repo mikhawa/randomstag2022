@@ -33,7 +33,7 @@ if(isset($_GET['partie'])){
     <p>Nombre de bonnes réponses : <strong>".Calcul::Pourcent($stats["nb2"],$stats["nbquestions"])."</strong> </p>
     <p>Nombre de mauvaises réponses : <strong>".Calcul::Pourcent($stats["nb1"],$stats["nbquestions"])."</strong> </p>
     <p>Nombre d'absences' : <strong>".Calcul::Pourcent($stats["nb0"],$stats["nbquestions"])."</strong> </p>";
-        usleep(500000); // 0.5 seconde
+
         echo $sortie;
 
         elseif($_GET['partie']=='equipe'):
@@ -65,8 +65,7 @@ if(isset($_GET['partie'])){
 
         $i++;
         endforeach;
-        usleep(1000000); // 1 seconde
-
+        usleep(50000); // 0.05 seconde
         echo $sortie;
 
         elseif ($_GET['partie']=='hasard'):
@@ -74,20 +73,11 @@ if(isset($_GET['partie'])){
             $recupOneStagiaire = $stagiairesManager->SelectOneRandomStagiairesByIdAnnee($idan);
 
             $sortie ="<div  class='modal-header'><h5 class='modal-title' id='staticBackdropLabel'>Question pour ".$recupOneStagiaire["prenom"]." ".substr($recupOneStagiaire['nom'],0,1)."</h5>
-                <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
-            </div>
-            <div class='modal-body'>
-                Il suffit de répondre à la question
             </div>
             <div id='idstagiaire' class='visually-hidden'>".$recupOneStagiaire['idstagiaires']."</div>
-            <div id='idannee' class='visually-hidden'>$idan</div>
-            <div class='modal-footer'>".'
-                <button type="button" id="b3" class="btn btn-success" data-bs-dismiss="modal">Super réponse</button>
-                <button type="button" id="b2" class="btn btn-primary" data-bs-dismiss="modal">Bonne réponse</button>
-                <button type="button" id="b1" class="btn btn-warning" data-bs-dismiss="modal">Et non...</button>
-                <button type="button" id="b0" class="btn btn-dark" data-bs-dismiss="modal">Absent.e</button>
-            </div>';
-            usleep(200000); // 0.2 secondes
+                <div id='idannee' class='visually-hidden'>$idan</div>
+            </div>
+            ";
             echo $sortie;
 
     endif;
