@@ -42,11 +42,11 @@
                     <p>Nombre d'absences' :
                         <strong><?= Calcul::Pourcent($recupStats["nb0"], $recupStats["nbquestions"]) ?></strong></p>
                 </div>
-                <div class="col">
+                <div class="col p-2">
                     <?php
                     foreach($recupAllStagiaires as $button):
                     ?>
-                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><?= $button["prenom"] . " " . substr($button['nom'], 0, 1) ?></button>
+                    <button type="button" onclick="choix(1,<?=(int)$button['idstagiaires']?>,'<?= $button["prenom"] . " " . substr($button['nom'], 0, 1) ?>')" class="btn btn-success p-1 m-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><?= $button["prenom"] . " " . substr($button['nom'], 0, 1) ?></button>
                     <?php
                     endforeach;
                     ?>
