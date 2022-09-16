@@ -29,7 +29,7 @@
         <hr/>
         <h2 class="h5">Statistiques Globales</h2>
         <hr/>
-        <div class="container text-left">
+        <div class="text-left">
             <div class="row">
                 <div class="col" id="statstotal">
                     <p>Nombre de questions : <strong><?= $recupStats['nbquestions'] ?></strong></p>
@@ -48,8 +48,8 @@
                         ?>
                         <button type="button"
                                 onclick="choix(1,<?= (int)$button['idstagiaires'] ?>,'<?= $button["prenom"] . " " . substr($button['nom'], 0, 1) ?>')"
-                                class="btn btn-success p-1 m-2" data-bs-toggle="modal"
-                                data-bs-target="#staticBackdrop"><?= $button["prenom"] . " " . substr($button['nom'], 0, 1) ?></button>
+                                class="btn btn-outline-primary p-1 m-1 " data-bs-toggle="modal"
+                                data-bs-target="#staticBackdrop"><strong><?= $button["prenom"] . " " . substr($button['nom'], 0, 1) ?></strong></button>
                     <?php
                     endforeach;
                     ?>
