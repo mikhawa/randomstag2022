@@ -11,7 +11,7 @@ class StagiairesManager implements ManagerInterface
         $this->connect = $db;
     }
 
-    public function SelectOnlyStagiairesByIdAnnee(int $idannee) : Array|String
+    public function SelectOnlyStagiairesByIdAnnee(int $idannee): array|string
     {
         $sql = "SELECT s.*,  
                 (SELECT COUNT(r.idreponseslog) FROM reponseslog r WHERE r.stagiaires_idstagiaires = s.idstagiaires AND r.reponseslogcol = 3) AS vgood,
@@ -36,7 +36,7 @@ class StagiairesManager implements ManagerInterface
         }
     }
 
-    public function SelectOneRandomStagiairesByIdAnnee(int $idannee) : Array|String
+    public function SelectOneRandomStagiairesByIdAnnee(int $idannee): array|string
     {
         $sql = "SELECT s.*          
                     FROM stagiaires s
@@ -64,57 +64,57 @@ class StagiairesManager implements ManagerInterface
         // Début de transaction
         $this->connect->beginTransaction();
 
-        try{
+        try {
 
-        // Sélection des points du stagiaire
-        $sql = "SELECT points FROM stagiaires WHERE idstagiaires = ?";
-        $prepare = $this->connect->prepare($sql);
-        
-        $prepare->execute([$idstagiaire]);
-        $stagiaire = $prepare->fetch(\PDO::FETCH_ASSOC);
-        $points = $stagiaire['points'];
+            // Sélection des points du stagiaire
+            $sql = "SELECT points FROM stagiaires WHERE idstagiaires = ?";
+            $prepare = $this->connect->prepare($sql);
 
-        // pour l'update des stats globales
-        $statGolbal['nbquestions']++;
+            $prepare->execute([$idstagiaire]);
+            $stagiaire = $prepare->fetch(\PDO::FETCH_ASSOC);
+            $points = $stagiaire['points'];
 
-        // gestion des points
-        switch($newPoint):
-            case "tbien":
-                // stats global
-                $statGolbal['nb3']++;
-                // points stagiaire
-                $points +=2;
-                // log stagiaire
-                $rep = 3;
-            break;
-            case "bien":
-                $statGolbal['nb2']++;
-                $points ++;
-                $rep = 2;
-            break;
-            case "pbien":
-                $statGolbal['nb1']++;
-                $points --;
-                $rep = 1;
-                break;
-            default:
-                $statGolbal['nb0']++;
-                $points --;
-                $rep = 0;
-        endswitch;
-        
-        // update des points du stagiaire
-        $sql = "UPDATE stagiaires SET points = ? WHERE idstagiaires = ?";
-        $prepare = $this->connect->prepare($sql);
-        $prepare->execute([$points, $idstagiaire]);
+            // pour l'update des stats globales
+            $statGolbal['nbquestions']++;
+
+            // gestion des points
+            switch ($newPoint):
+                case "tbien":
+                    // stats global
+                    $statGolbal['nb3']++;
+                    // points stagiaire
+                    $points += 2;
+                    // log stagiaire
+                    $rep = 3;
+                    break;
+                case "bien":
+                    $statGolbal['nb2']++;
+                    $points++;
+                    $rep = 2;
+                    break;
+                case "pbien":
+                    $statGolbal['nb1']++;
+                    $points--;
+                    $rep = 1;
+                    break;
+                default:
+                    $statGolbal['nb0']++;
+                    $points--;
+                    $rep = 0;
+            endswitch;
+
+            // update des points du stagiaire
+            $sql = "UPDATE stagiaires SET points = ? WHERE idstagiaires = ?";
+            $prepare = $this->connect->prepare($sql);
+            $prepare->execute([$points, $idstagiaire]);
 
 
-        // insertion des logs
+            // insertion des logs
             $sql = "INSERT INTO reponseslog (reponseslogcol,stagiaires_idstagiaires) VALUES (?,?);";
             $prepare = $this->connect->prepare($sql);
-            $prepare->execute([$rep,$idstagiaire]);
+            $prepare->execute([$rep, $idstagiaire]);
 
-        // update des stats globales
+            // update des stats globales
             $sql = "UPDATE statistiquesannee SET nbquestions = ?, nb0=?, nb1=?, nb2=?, nb3=?
                     WHERE annee_idannee = ?";
             $prepare = $this->connect->prepare($sql);
@@ -126,9 +126,9 @@ class StagiairesManager implements ManagerInterface
                 $statGolbal['annee_idannee']
             ]);
 
-        $this->connect->commit();
+            $this->connect->commit();
 
-        }catch(Exception $e){
+        } catch (Exception $e) {
             $this->connect->rollBack();
             return $e->getMessage();
         }

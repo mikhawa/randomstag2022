@@ -11,7 +11,7 @@ class StatistiquesanneeManager implements ManagerInterface
         $this->connect = $db;
     }
 
-    public function SelectStatsByIdAnnee(int $idannee) : Array|String
+    public function SelectStatsByIdAnnee(int $idannee): array|string
     {
         $sql = "SELECT * FROM statistiquesannee WHERE annee_idannee = ?";
         $prepare = $this->connect->prepare($sql);

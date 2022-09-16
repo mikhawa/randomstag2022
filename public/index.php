@@ -15,8 +15,8 @@ try {
     die($e->getMessage());
 }
 
-if(isset($_SESSION['myidsession'])&& $_SESSION['myidsession'] == session_id()){
+if (isset($_SESSION['myidsession']) && $_SESSION['myidsession'] == session_id()) {
 
-}else{
+} else {
     require "../controller/publicController.php";
 }

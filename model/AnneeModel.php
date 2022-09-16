@@ -61,5 +61,5 @@ class AnneeModel extends AbstractModel
         return $this;
     }
 
-    
+
 }
