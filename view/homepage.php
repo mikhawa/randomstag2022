@@ -141,7 +141,7 @@ https://getbootstrap.com/docs/5.2/components/modal/
     </div>
 </div>
 
-<script src="js/myAjax.js"></script>
+<script src="js/myAjax.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
