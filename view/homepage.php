@@ -8,7 +8,7 @@
     <link rel="icon" type="image/x-icon" href="img/logo.png"/>
     <title>Et la question est pour ...</title>
 </head>
-<body>
+<body onload="une();deux();">
 
 <div class="col-lg-11 mx-auto p-3 py-md-5">
     <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
@@ -42,7 +42,7 @@
                     <p>Nombre d'absences' :
                         <strong><?= Calcul::Pourcent($recupStats["nb0"], $recupStats["nbquestions"]) ?></strong></p>
                 </div>
-                <div class="col p-2">
+                <div class="col">
                     <?php
                     foreach ($recupAllStagiaires as $button):
                         ?>
@@ -53,6 +53,73 @@
                     <?php
                     endforeach;
                     ?>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div id="chartContainer" style="height: 250px; width: 100%;"></div>
+                    <?php
+                    $dataPoints = array(
+                        array("label"=> "Très bonnes réponses", "y"=> (int) $recupStats["nb3"]),
+                        array("label"=> "Bonnes réponses", "y"=> (int) $recupStats["nb2"]),
+                        array("label"=> "Mauvaises réponses", "y"=> (int) $recupStats["nb1"]),
+                        array("label"=> "Absences", "y"=> (int) $recupStats["nb0"]),
+                    );
+
+                    ?>
+                    <script>
+                        function une () {
+                            var chart = new CanvasJS.Chart("chartContainer", {
+                                animationEnabled: true,
+                                exportEnabled: true,
+                                title: {
+                                    text: "Total des Réponses : <?=$recupStats['nbquestions']?>"
+                                },
+                                subtitles: [{
+                                    text: ""
+                                }],
+                                data: [{
+                                    type: "pie",
+                                    showInLegend: "true",
+                                    legendText: "{label}",
+                                    indexLabelFontSize: 14,
+                                    indexLabel: "{label} - #percent%",
+                                    yValueFormatString: "#,##0",
+                                    dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+                                }]
+                            });
+                            chart.render();
+                        }
+                    </script>
+                </div>
+                <div class="col">
+                    <div id="chartContainer2" style="height: 250px; width: 100%;"></div>
+                    <?php
+                    foreach($recupAllStagiaires AS $item){
+                        $dataPoints2[]=array("label"=> $item["prenom"] . " " . substr($item['nom'],0,1),
+                                        "y" => (int) $item["points"],) ;
+                    }
+
+                    ?>
+                    <script>
+                        function deux() {
+                            var chart2 = new CanvasJS.Chart("chartContainer2", {
+                                animationEnabled: true,
+                                theme: "light2", // "light1", "light2", "dark1", "dark2"
+                                title: {
+                                    text: "Top 10 Stagiaires"
+                                },
+                                axisY: {
+                                    title: "Points"
+                                },
+                                data: [{
+                                    type: "column",
+                                    dataPoints: <?php echo json_encode($dataPoints2, JSON_NUMERIC_CHECK); ?>
+                                }]
+                            });
+                            chart2.render();
+                        }
+                    </script>
                 </div>
             </div>
         </div>
@@ -149,6 +216,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
         integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
         crossorigin="anonymous"></script>
-
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </body>
 </html>
