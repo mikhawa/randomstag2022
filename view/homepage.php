@@ -8,7 +8,7 @@
     <link rel="icon" type="image/x-icon" href="img/logo.png"/>
     <title>Et la question est pour ...</title>
 </head>
-<body onload="une();deux();">
+<body onload="deux();">
 
 <div class="col-lg-11 mx-auto p-3 py-md-5">
     <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
@@ -55,45 +55,11 @@
                     ?>
                 </div>
             </div>
-            <div class="row">
-                <div class="col">
-                    <div id="chartContainer" style="height: 250px; width: 100%;"></div>
-                    <?php
-                    $dataPoints = array(
-                        array("label"=> "Très bonnes réponses", "y"=> (int) $recupStats["nb3"]),
-                        array("label"=> "Bonnes réponses", "y"=> (int) $recupStats["nb2"]),
-                        array("label"=> "Mauvaises réponses", "y"=> (int) $recupStats["nb1"]),
-                        array("label"=> "Absences", "y"=> (int) $recupStats["nb0"]),
-                    );
 
-                    ?>
-                    <script>
-                        function une () {
-                            var chart = new CanvasJS.Chart("chartContainer", {
-                                animationEnabled: true,
-                                exportEnabled: true,
-                                title: {
-                                    text: "Total des Réponses : <?=$recupStats['nbquestions']?>"
-                                },
-                                subtitles: [{
-                                    text: ""
-                                }],
-                                data: [{
-                                    type: "pie",
-                                    showInLegend: "true",
-                                    legendText: "{label}",
-                                    indexLabelFontSize: 14,
-                                    indexLabel: "{label} - #percent%",
-                                    yValueFormatString: "#,##0",
-                                    dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
-                                }]
-                            });
-                            chart.render();
-                        }
-                    </script>
-                </div>
+            <div class="row">
+
                 <div class="col">
-                    <div id="chartContainer2" style="height: 250px; width: 100%;"></div>
+                    <div id="chartContainer2" style="height: 350px; width: 100%;"></div>
                     <?php
                     foreach($recupAllStagiaires AS $item){
                         $dataPoints2[]=array("label"=> $item["prenom"] . " " . substr($item['nom'],0,1),
@@ -101,13 +67,14 @@
                     }
 
                     ?>
+                    <div id="chart">
                     <script>
                         function deux() {
                             var chart2 = new CanvasJS.Chart("chartContainer2", {
                                 animationEnabled: true,
                                 theme: "light2", // "light1", "light2", "dark1", "dark2"
                                 title: {
-                                    text: "Top 10 Stagiaires"
+                                    text: "Top des Stagiaires"
                                 },
                                 axisY: {
                                     title: "Points"
@@ -120,6 +87,7 @@
                             chart2.render();
                         }
                     </script>
+                    </div>
                 </div>
             </div>
         </div>

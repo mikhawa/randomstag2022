@@ -36,6 +36,42 @@ if (isset($_GET['partie'])) {
 
         echo $sortie;
 
+    elseif ($_GET['partie'] == 'graph'):
+        $recupAllStagiaires = $stagiairesManager->SelectOnlyStagiairesByIdAnnee($idan);
+        $sortie = "";
+        foreach ($recupAllStagiaires as $item):
+            $dataPoints2[]=array("label"=> $item["prenom"] . " " . substr($item['nom'],0,1),
+                "y" => (int) $item["points"],) ;
+            
+        endforeach;
+        $sortie .= "<script>
+                        function deux() {
+                            var chart2 = new CanvasJS.Chart('chartContainer2', {
+                                animationEnabled: true,
+                                theme: 'light2', // 'light1', 'light2', 'dark1', 'dark2'
+                                title: {
+                                    text: 'Top des Stagiaires'
+                                },
+                                axisY: {
+                                    title: 'Points'
+                                },
+                                data: [{
+                                    type: 'column',
+                                    dataPoints: ". json_encode($dataPoints2, JSON_NUMERIC_CHECK) ."
+                                }]
+                            });
+                            // hey
+                            chart2.render();
+                        }
+                        // test
+                        deux();
+                        // retest
+                        
+                    </script>";
+
+        usleep(50000); // 0.05 seconde
+        echo $sortie;
+
     elseif ($_GET['partie'] == 'equipe'):
         $recupAllStagiaires = $stagiairesManager->SelectOnlyStagiairesByIdAnnee($idan);
 

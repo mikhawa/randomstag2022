@@ -2,6 +2,7 @@ const httpRequest = new XMLHttpRequest();
 const httpRequest2 = new XMLHttpRequest();
 const httpRequest3 = new XMLHttpRequest();
 const httpRequest4 = new XMLHttpRequest();
+const httpRequest5 = new XMLHttpRequest();
 
 function onUpdate(idstag, idan, point) {
     httpRequest.onreadystatechange = () => {
@@ -10,6 +11,7 @@ function onUpdate(idstag, idan, point) {
             onLoadPage('hasard', 'hasard', httpRequest2);
             onLoadPage('statstotal', 'general', httpRequest3);
             onLoadPage('updateAllStagiaires', 'equipe', httpRequest4);
+            onLoadPage('chart', 'graph', httpRequest5);
         }
     }
     httpRequest.open('POST', 'update.php', true);
