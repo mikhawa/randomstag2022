@@ -67,11 +67,12 @@
                     }
 
                     ?>
-                    <div id="chart">
+
                     <script>
                         function deux() {
                             var chart2 = new CanvasJS.Chart("chartContainer2", {
                                 animationEnabled: true,
+                                willReadFrequently: false,
                                 theme: "light2", // "light1", "light2", "dark1", "dark2"
                                 title: {
                                     text: "Top des Stagiaires"
@@ -87,6 +88,7 @@
                             chart2.render();
                         }
                     </script>
+                    <div id="chartic">
                     </div>
                 </div>
             </div>

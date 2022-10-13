@@ -36,7 +36,7 @@ if (isset($_GET['partie'])) {
 
         echo $sortie;
 
-    elseif ($_GET['partie'] == 'graph'):
+    elseif ($_GET['partie'] == 'graphic'):
         $recupAllStagiaires = $stagiairesManager->SelectOnlyStagiairesByIdAnnee($idan);
         $sortie = "";
         foreach ($recupAllStagiaires as $item):
@@ -45,28 +45,8 @@ if (isset($_GET['partie'])) {
             
         endforeach;
         $sortie .= "<script>
-                        function deux() {
-                            var chart2 = new CanvasJS.Chart('chartContainer2', {
-                                animationEnabled: true,
-                                theme: 'light2', // 'light1', 'light2', 'dark1', 'dark2'
-                                title: {
-                                    text: 'Top des Stagiaires'
-                                },
-                                axisY: {
-                                    title: 'Points'
-                                },
-                                data: [{
-                                    type: 'column',
-                                    dataPoints: ". json_encode($dataPoints2, JSON_NUMERIC_CHECK) ."
-                                }]
-                            });
-                            // hey
-                            chart2.render();
-                        }
-                        // test
-                        deux();
-                        // retest
-                        
+                        chart2.options.data[0].dataPoints=". json_encode($dataPoints2, JSON_NUMERIC_CHECK).";
+                        chart2.render();
                     </script>";
 
         usleep(50000); // 0.05 seconde
