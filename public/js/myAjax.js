@@ -12,6 +12,7 @@ function onUpdate(idstag, idan, point) {
             onLoadPage('statstotal', 'general', httpRequest3);
             onLoadPage('updateAllStagiaires', 'equipe', httpRequest4);
             onLoadPage('chartic', 'graphic', httpRequest5);
+            $deux();
         }
     }
     httpRequest.open('POST', 'update.php', true);

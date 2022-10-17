@@ -59,7 +59,7 @@
             <div class="row">
 
                 <div class="col">
-                    <div id="chartContainer2" style="height: 350px; width: 100%;"></div>
+                    <div id="chartContainer2" style="height: 400px; width: 100%;"></div>
                     <?php
                     foreach($recupAllStagiaires AS $item){
                         $dataPoints2[]=array("label"=> $item["prenom"] . " " . substr($item['nom'],0,1),
@@ -186,6 +186,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
         integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
         crossorigin="anonymous"></script>
-<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script src="js/canvas.js"></script>
 </body>
 </html>
