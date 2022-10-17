@@ -1,7 +1,7 @@
 <?php
 
 
-class UsereModel extends AbstractModel
+class UserModel extends AbstractModel
 {
     protected int $iduser;
     protected string $username;
@@ -19,9 +19,9 @@ class UsereModel extends AbstractModel
 
     /**
      * @param int $iduser
-     * @return UsereModel
+     * @return UserModel
      */
-    public function setIduser(int $iduser): UsereModel
+    public function setIduser(int $iduser): UserModel
     {
         $this->iduser = $iduser;
         return $this;
@@ -37,9 +37,9 @@ class UsereModel extends AbstractModel
 
     /**
      * @param string $username
-     * @return UsereModel
+     * @return UserModel
      */
-    public function setUsername(string $username): UsereModel
+    public function setUsername(string $username): UserModel
     {
         $this->username = $username;
         return $this;
@@ -55,9 +55,9 @@ class UsereModel extends AbstractModel
 
     /**
      * @param string $userpwd
-     * @return UsereModel
+     * @return UserModel
      */
-    public function setUserpwd(string $userpwd): UsereModel
+    public function setUserpwd(string $userpwd): UserModel
     {
         $this->userpwd = $userpwd;
         return $this;
@@ -73,9 +73,9 @@ class UsereModel extends AbstractModel
 
     /**
      * @param string $themail
-     * @return UsereModel
+     * @return UserModel
      */
-    public function setThemail(string $themail): UsereModel
+    public function setThemail(string $themail): UserModel
     {
         $this->themail = $themail;
         return $this;
@@ -91,14 +91,13 @@ class UsereModel extends AbstractModel
 
     /**
      * @param string $clefunique
-     * @return UsereModel
+     * @return UserModel
      */
-    public function setClefunique(string $clefunique): UsereModel
+    public function setClefunique(string $clefunique): UserModel
     {
         $this->clefunique = $clefunique;
         return $this;
     }
-
 
 
 }
