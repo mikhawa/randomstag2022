@@ -40,7 +40,50 @@ if (isset($_GET['partie'])) {
         $recupAllStagiaires = $stagiairesManager->SelectOnlyStagiairesByIdAnnee($idan);
 
         $i = 1;
-        $sortie = "";
+        $sortie = "<tr>
+        <td colspan='9'>
+            <div id='chartdiv' style='height:400px;width:auto;'></div>";
+        $sortie .= "
+            <script>
+                $(document).ready(function(){
+                    $.jqplot.config.enablePlugins = true;";
+
+                    $a = "[";
+                    $b = "[";
+                    foreach ($recupAllStagiaires as $item):
+                        $a .= $item["points"].",";
+                        $b .= "'".substr($item["prenom"],0,8) . "',";
+
+                    endforeach;
+                    $a.="]";$b.="]";
+                    $sortie .= "
+                    var s1 = {$a};
+                    var ticks = {$b};
+                        plot1 = $.jqplot('chartdiv', [s1], {
+                        // Only animate if we're not using excanvas (not in IE 7 or IE 8)..
+                        animate: !$.jqplot.use_excanvas,
+                        seriesDefaults:{
+                            renderer:$.jqplot.BarRenderer,
+                            rendererOptions: {
+                                // Set the varyBarColor option to true to use different colors for each bar.
+                                // The default series colors are used.
+                                varyBarColor: true
+                            },
+                            pointLabels: { show: true }
+                        },
+                        axes: {
+                            xaxis: {
+                                renderer: $.jqplot.CategoryAxisRenderer,
+                                ticks: ticks
+                            }
+                        },
+                        highlighter: { show: false }
+                    });
+
+                });
+            </script><hr>
+        </td>
+    </tr>";
         foreach ($recupAllStagiaires as $item):
 
             $sortie .= "

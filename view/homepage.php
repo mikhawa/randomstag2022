@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script class="include" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.jqplot.min.js"></script>
+    <script type="text/javascript" src="js/jqplot.barRenderer.min.js"></script>
+    <script type="text/javascript" src="js/jqplot.pieRenderer.min.js"></script>
+    <script type="text/javascript" src="js/jqplot.categoryAxisRenderer.min.js"></script>
+    <script type="text/javascript" src="js/jqplot.pointLabels.min.js"></script>
+    <link rel="stylesheet" type="text/css" hrf="css/jquery.jqplot.min.css" />
     <link rel="icon" type="image/x-icon" href="img/logo.png"/>
     <title>Et la question est pour ...</title>
 </head>
@@ -61,6 +68,7 @@
 <h2 class="h5">Statistiques Personnelles</h2>
 <hr/>
 <table class="table table-striped">
+
     <thead>
     <tr>
         <th scope="col">N°</th>
@@ -74,8 +82,53 @@
         <th scope="col">% sortie</th>
     </tr>
     </thead>
+
     <tbody id="updateAllStagiaires">
+    <tr>
+        <td colspan='9'>
+            <div id='chartdiv' style='height:400px;width:auto;'></div>
+            <script>
+                $(document).ready(function(){
+                    $.jqplot.config.enablePlugins = true;
+                    <?php
+                    $a = "[";
+                    $b = "[";
+                    foreach ($recupAllStagiaires as $item):
+                        $a .= $item["points"].",";
+                        $b.= "'".substr($item["prenom"],0,8) . "',";
+
+                    endforeach;
+                    $a.="]";$b.="]";
+                    ?>
+                    var s1 =<?=$a?>;
+                    var ticks =<?=$b?>;
+                        plot1 = $.jqplot('chartdiv', [s1], {
+                        // Only animate if we're not using excanvas (not in IE 7 or IE 8)..
+                        animate: !$.jqplot.use_excanvas,
+                        seriesDefaults:{
+                            renderer:$.jqplot.BarRenderer,
+                            rendererOptions: {
+                                // Set the varyBarColor option to true to use different colors for each bar.
+                                // The default series colors are used.
+                                varyBarColor: true
+                            },
+                            pointLabels: { show: true }
+                        },
+                        axes: {
+                            xaxis: {
+                                renderer: $.jqplot.CategoryAxisRenderer,
+                                ticks: ticks
+                            }
+                        },
+                        highlighter: { show: false }
+                    });
+
+                });
+            </script><hr>
+        </td>
+    </tr>
     <?php
+
     $i = 1;
     foreach ($recupAllStagiaires as $item):
         ?>
@@ -149,6 +202,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
         integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
         crossorigin="anonymous"></script>
+
 
 </body>
 </html>
