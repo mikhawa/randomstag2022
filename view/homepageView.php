@@ -49,7 +49,8 @@
                         <button type="button"
                                 onclick="choix(1,<?= (int)$button['idstagiaires'] ?>,'<?= $button["prenom"] . " " . substr($button['nom'], 0, 1) ?>')"
                                 class="btn btn-outline-primary p-1 m-1 " data-bs-toggle="modal"
-                                data-bs-target="#staticBackdrop"><strong><?= $button["prenom"] . " " . substr($button['nom'], 0, 1) ?></strong></button>
+                                data-bs-target="#staticBackdrop">
+                            <strong><?= $button["prenom"] . " " . substr($button['nom'], 0, 1) ?></strong></button>
                     <?php
                     endforeach;
                     ?>

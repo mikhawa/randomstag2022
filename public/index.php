@@ -16,7 +16,9 @@ try {
 }
 
 if (isset($_SESSION['myidsession']) && $_SESSION['myidsession'] == session_id()) {
+    require "../controller/privateController.php";
 
 } else {
     require "../controller/publicController.php";
+
 }
