@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : mer. 19 oct. 2022 à 15:24
+-- Généré le : mer. 19 oct. 2022 à 16:27
 -- Version du serveur : 10.3.36-MariaDB-0+deb10u2
 -- Version de PHP : 7.4.30
 
@@ -15,6 +15,7 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `coolcolden`
 --
+DROP DATABASE IF EXISTS `coolcolden`;
 CREATE DATABASE IF NOT EXISTS `coolcolden` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `coolcolden`;
 
