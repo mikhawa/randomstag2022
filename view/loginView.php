@@ -14,18 +14,32 @@
     <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
         <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
             <img src="img/logo.png" width="45" height="40"/>
-            <span class="fs-3 ps-2">Et la question est pour ...</span>
+            <span class="fs-3 ps-2">Et la question est pour ... Connexion !</span>
         </a>
     </header>
 
     <main>
         <h1 class="h2">Groupe Webdev 2022-2023</h1>
-        <p class="fs-5 col-md-8">Une question, un.e stagiaire, une réponse !</p>
+        <p class="fs-5 col-md-8 mb-4">Une question, un.e stagiaire, une réponse !</p><hr>
+        <form action="" name="login" method="post">
         <div class="d-grid gap-2 col-6 mx-auto">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                Nouvelle question au hasard !
-            </button>
+            <div class="mb-3 mt-3 row">
+                <label for="staticEmail" class="col-sm-2 col-form-label">Login</label>
+                <div class="col-sm-10">
+                    <input type="text" name="username" class="form-control" id="staticEmail" required>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+                <div class="col-sm-10">
+                    <input type="password" name="userpwd" class="form-control" id="inputPassword" required>
+                </div>
+            </div>
+            <div class="mb-1 row">
+                <button type="submit" class="btn btn-primary mb-3">Confirm identity</button>
+            </div>
         </div>
+        </form>
         <hr/>
     </main>
 </div>
