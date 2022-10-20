@@ -1,14 +1,23 @@
 <?php
 
-$stagiairesManager = new StagiairesManager($connect);
-$statsManager = new StatistiquesanneeManager($connect);
+$userManager = new UserManager($connect);
 
-$recupAllStagiaires = $stagiairesManager->SelectOnlyStagiairesByIdAnnee(1);
-$recupStats = $statsManager->SelectStatsByIdAnnee(1);
+if(isset($_POST['username'],$_POST['userpwd'])){
+    $user = new UserModel(["username"=>$_POST['username'],"userpwd"=>$_POST['userpwd']]);
 
-$recupOneStagiaire = $stagiairesManager->SelectOneRandomStagiairesByIdAnnee(1);
+    if($userManager->connectUser($user)){
+        header("Location: ./");
+        exit();
+    }else{
+        $error = "<p style='text-align: center'>Login ou mot de passe incorrecte.</p>";
+    }
 
-// var_dump($recupOneStagiaire);
+    // var_dump($user);
+    //echo password_hash($user->getUserpwd(), PASSWORD_DEFAULT);
+    // echo "<hr>".uniqid(true);
+
+}
+
 
 // View
-require_once "../view/homepage.php";
+require_once "../view/loginView.php";
