@@ -1,5 +1,9 @@
 <?php
 
+if(isset($_GET['disconnect'])){
+    if(UserManager::disconnect()) header("Location: ./");
+}
+
 $stagiairesManager = new StagiairesManager($connect);
 $statsManager = new StatistiquesanneeManager($connect);
 

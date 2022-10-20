@@ -38,7 +38,9 @@
             <div class="mb-1 row">
                 <button type="submit" class="btn btn-primary mb-3">Confirm identity</button>
             </div>
-        </div>
+        </div><?php
+            if(isset($error)) echo $error
+            ?>
         </form>
         <hr/>
     </main>

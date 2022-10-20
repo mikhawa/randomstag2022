@@ -110,9 +110,9 @@ class StagiairesManager implements ManagerInterface
 
 
             // insertion des logs
-            $sql = "INSERT INTO reponseslog (reponseslogcol,stagiaires_idstagiaires) VALUES (?,?);";
+            $sql = "INSERT INTO reponseslog (reponseslogcol,stagiaires_idstagiaires,user_iduser) VALUES (?,?,?);";
             $prepare = $this->connect->prepare($sql);
-            $prepare->execute([$rep, $idstagiaire]);
+            $prepare->execute([$rep, $idstagiaire,$_SESSION['iduser']]);
 
             // update des stats globales
             $sql = "UPDATE statistiquesannee SET nbquestions = ?, nb0=?, nb1=?, nb2=?, nb3=?
