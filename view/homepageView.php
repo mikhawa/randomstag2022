@@ -9,7 +9,7 @@
     <title>Et la question est pour ...</title>
 </head>
 <body>
-<div class="d-grid gap-2 d-md-flex justify-content-md-end"><a href="?disconnect"><button type="button" class="btn btn-primary">Disconnect</button></a></div>
+<div class="d-grid gap-2 d-md-flex justify-content-md-end"><a href="?disconnect"><button type="button" class="btn btn-primary">Déconnexion</button></a></div>
 <div class="col-lg-11 mx-auto p-3 py-md-5">
     <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
         <a href="/" class="d-flex align-items-center text-dark text-decoration-none">

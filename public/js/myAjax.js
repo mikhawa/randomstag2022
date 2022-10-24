@@ -12,7 +12,7 @@ function onUpdate(idstag, idan, point) {
             onLoadPage('updateAllStagiaires', 'equipe', httpRequest4);
         }
     }
-    httpRequest.open('POST', 'update.php', true);
+    httpRequest.open('POST', 'index.php?myfile=update', true);
     httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     httpRequest.send("idstag=" + idstag +
         "&idan=" + idan + "&points=" + point);
@@ -28,7 +28,7 @@ function onLoadPage(idLoad, Lurl, num) {
         }
     }
     let idan = 1;
-    num.open('POST', 'load.php?partie=' + Lurl + '&idan=' + idan + '&cache=' + (new Date()).getTime(), true);
+    num.open('POST', 'index.php?myfile=load&partie=' + Lurl + '&idan=' + idan + '&cache=' + (new Date()).getTime(), true);
     num.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     num.send("temps=" + (new Date()).getTime(), true);
 }
