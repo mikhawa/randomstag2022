@@ -16,9 +16,26 @@ try {
 }
 
 if (isset($_SESSION['myidsession']) && $_SESSION['myidsession'] == session_id()) {
-    require "../controller/privateController.php";
+
+    if(isset($_GET['myfile'])){
+
+        switch ($_GET['myfile']):
+            case "update":
+                require "../controller/update.php";
+                break;
+            case "load":
+                require "../controller/load.php";
+        endswitch;
+    }else{
+        require "../controller/privateController.php";
+    }
 
 } else {
-    require "../controller/publicController.php";
+
+    if(isset($_GET['myfile'])){
+        if(UserManager::disconnect()) header("Location: ./"); exit();
+    }else {
+        require "../controller/publicController.php";
+    }
 
 }
