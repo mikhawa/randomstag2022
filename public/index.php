@@ -3,6 +3,8 @@ session_start([
     'cookie_lifetime' => 86400,
 ]);
 
+date_default_timezone_set('Europe/Brussels');
+
 require_once "../config.php";
 
 // Personal autoload

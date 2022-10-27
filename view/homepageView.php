@@ -102,7 +102,7 @@
                 echo Calcul::Pourcent($item["absent"], $item["sorties"]);
                 ?></td>
             <td><?= $item["sorties"] ?></td>
-            <td><?= Calcul::Pourcent($item["sorties"], $recupStats['nbquestions']) ?></td>
+            <td><?= Calcul::Pourcent($item["sorties"], $recupStats["sorties"]) ?></td>
         </tr>
         <?php
         $i++;

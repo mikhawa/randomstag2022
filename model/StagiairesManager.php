@@ -59,7 +59,7 @@ class StagiairesManager implements ManagerInterface
         }
     }
 
-    public function updatePointsStagiaireById(int $idstagiaire, string $newPoint, array $statGolbal)
+    public function updatePointsStagiaireById(int $idstagiaire, string $newPoint, int $idannee)
     {
 
         // Début de transaction
@@ -75,31 +75,25 @@ class StagiairesManager implements ManagerInterface
             $stagiaire = $prepare->fetch(\PDO::FETCH_ASSOC);
             $points = $stagiaire['points'];
 
-            // pour l'update des stats globales
-            $statGolbal['nbquestions']++;
+
 
             // gestion des points
             switch ($newPoint):
                 case "tbien":
-                    // stats global
-                    $statGolbal['nb3']++;
                     // points stagiaire
                     $points += 2;
                     // log stagiaire
                     $rep = 3;
                     break;
                 case "bien":
-                    $statGolbal['nb2']++;
                     $points++;
                     $rep = 2;
                     break;
                 case "pbien":
-                    $statGolbal['nb1']++;
                     $points--;
                     $rep = 1;
                     break;
                 default:
-                    $statGolbal['nb0']++;
                     $points--;
                     $rep = 0;
             endswitch;
@@ -111,21 +105,10 @@ class StagiairesManager implements ManagerInterface
 
 
             // insertion des logs
-            $sql = "INSERT INTO reponseslog (reponseslogcol,stagiaires_idstagiaires,user_iduser) VALUES (?,?,?);";
+            $sql = "INSERT INTO reponseslog (reponseslogcol,stagiaires_idstagiaires,user_iduser,annee_idannee) VALUES (?,?,?,?);";
             $prepare = $this->connect->prepare($sql);
-            $prepare->execute([$rep, $idstagiaire,$_SESSION['iduser']]);
+            $prepare->execute([$rep, $idstagiaire,$_SESSION['iduser'],$idannee]);
 
-            // update des stats globales
-            $sql = "UPDATE statistiquesannee SET nbquestions = ?, nb0=?, nb1=?, nb2=?, nb3=?
-                    WHERE annee_idannee = ?";
-            $prepare = $this->connect->prepare($sql);
-            $prepare->execute([$statGolbal['nbquestions'],
-                $statGolbal['nb0'],
-                $statGolbal['nb1'],
-                $statGolbal['nb2'],
-                $statGolbal['nb3'],
-                $statGolbal['annee_idannee']
-            ]);
 
             $this->connect->commit();
 
