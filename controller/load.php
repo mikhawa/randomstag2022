@@ -2,21 +2,25 @@
 
 // Manager
 $stagiairesManager = new StagiairesManager($connect);
-$statsManager = new StatistiquesanneeManager($connect);
+$statsManager = new AnneeManager($connect);
 
 
 $idan = (int)$_GET['idan'];
 
-$stats = $statsManager->SelectStatsByIdAnnee($idan);
+$stats = $statsManager->SelectStatsByAnneeAndDate($idan,450);
 // var_dump($_GET);
 // si on a bien reçu le formulaire
 if (isset($_GET['partie'])) {
     if ($_GET['partie'] == 'general'):
-        $sortie = "<p>Nombre de questions : <strong>" . $stats['nbquestions'] . "</strong> </p>
-    <p>Nombre de très bonnes réponses : <strong>" . Calcul::Pourcent($stats["nb3"], $stats["nbquestions"]) . "</strong> </p>
-    <p>Nombre de bonnes réponses : <strong>" . Calcul::Pourcent($stats["nb2"], $stats["nbquestions"]) . "</strong> </p>
-    <p>Nombre de mauvaises réponses : <strong>" . Calcul::Pourcent($stats["nb1"], $stats["nbquestions"]) . "</strong> </p>
-    <p>Nombre d'absences' : <strong>" . Calcul::Pourcent($stats["nb0"], $stats["nbquestions"]) . "</strong> </p>";
+        $sortie = "<p>Nombre de questions : <strong>".$stats['sorties'] ."</strong></p>
+                    <p>Nombre de très bonnes réponses :
+                        <strong>".Calcul::Pourcent($stats["vgood"], $stats["sorties"])."</strong></p>
+                    <p>Nombre de bonnes réponses :
+                        <strong>".Calcul::Pourcent($stats["good"], $stats["sorties"])."</strong></p>
+                    <p>Nombre de mauvaises réponses :
+                        <strong>". Calcul::Pourcent($stats["nogood"], $stats["sorties"])."</strong></p>
+                    <p>Nombre d'absences' :
+                        <strong>". Calcul::Pourcent($stats["absent"], $stats["sorties"])."</strong></p>";
 
         echo $sortie;
 
@@ -44,7 +48,7 @@ if (isset($_GET['partie'])) {
                 Calcul::Pourcent($item["absent"], $item["sorties"])
                 . "</td>
             <td>" . $item["sorties"] . "</td>
-            <td>" . Calcul::Pourcent($item["sorties"], $stats['nbquestions']) . "</td>
+            <td>" . Calcul::Pourcent($item["sorties"], $stats['sorties']) . "</td>
         </tr>";
 
             $i++;

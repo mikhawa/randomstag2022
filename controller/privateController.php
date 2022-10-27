@@ -5,10 +5,10 @@ if(isset($_GET['disconnect'])){
 }
 
 $stagiairesManager = new StagiairesManager($connect);
-$statsManager = new StatistiquesanneeManager($connect);
+$statsManager = new AnneeManager($connect);
 
 $recupAllStagiaires = $stagiairesManager->SelectOnlyStagiairesByIdAnnee(1);
-$recupStats = $statsManager->SelectStatsByIdAnnee(1);
+$recupStats = $statsManager->SelectStatsByAnneeAndDate(1,450);
 
 $recupOneStagiaire = $stagiairesManager->SelectOneRandomStagiairesByIdAnnee(1);
 
