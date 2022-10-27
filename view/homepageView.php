@@ -32,20 +32,20 @@
             </button>
         </div>
         <hr/>
-        <h2 class="h5">Statistiques Globales</h2>
+        <h2 class="h5">Statistiques Globales de <?=$recupStats['section']?> <?=$recupStats['annee']?></h2>
         <hr/>
         <div class="text-left">
             <div class="row">
                 <div class="col" id="statstotal">
-                    <p>Nombre de questions : <strong><?= $recupStats['nbquestions'] ?></strong></p>
+                    <p>Nombre de questions : <strong><?= $recupStats['sorties'] ?></strong></p>
                     <p>Nombre de très bonnes réponses :
-                        <strong><?= Calcul::Pourcent($recupStats["nb3"], $recupStats["nbquestions"]) ?></strong></p>
+                        <strong><?= Calcul::Pourcent($recupStats["vgood"], $recupStats["sorties"]) ?></strong></p>
                     <p>Nombre de bonnes réponses :
-                        <strong><?= Calcul::Pourcent($recupStats["nb2"], $recupStats["nbquestions"]) ?></strong></p>
+                        <strong><?= Calcul::Pourcent($recupStats["good"], $recupStats["sorties"]) ?></strong></p>
                     <p>Nombre de mauvaises réponses :
-                        <strong><?= Calcul::Pourcent($recupStats["nb1"], $recupStats["nbquestions"]) ?></strong></p>
+                        <strong><?= Calcul::Pourcent($recupStats["nogood"], $recupStats["sorties"]) ?></strong></p>
                     <p>Nombre d'absences' :
-                        <strong><?= Calcul::Pourcent($recupStats["nb0"], $recupStats["nbquestions"]) ?></strong></p>
+                        <strong><?= Calcul::Pourcent($recupStats["absent"], $recupStats["sorties"]) ?></strong></p>
                 </div>
                 <div class="col p-2">
                     <?php
