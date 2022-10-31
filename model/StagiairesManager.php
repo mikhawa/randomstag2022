@@ -11,7 +11,7 @@ class StagiairesManager implements ManagerInterface
         $this->connect = $db;
     }
 
-    public function SelectOnlyStagiairesByIdAnnee(int $idannee): array|string
+    public function SelectOnlyStagiairesByIdAnnee(int $idannee, int $temps=1000): array|string
     {
         $sql = "SELECT s.*,  
                 (SELECT COUNT(r.idreponseslog) FROM reponseslog r WHERE r.stagiaires_idstagiaires = s.idstagiaires AND r.reponseslogcol = 3) AS vgood,

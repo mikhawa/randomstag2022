@@ -21,7 +21,38 @@ try {
 
 if (isset($_SESSION['myidsession']) && $_SESSION['myidsession'] == session_id()) {
 
-    if(isset($_GET['myfile'])){
+    if (isset($_GET['temps'])) {
+        switch ($_GET['temps']) {
+            case "Tous":
+                $tps = CHOIX_DATE["tous"];
+                break;
+            case "1-an":
+                $tps = CHOIX_DATE["1 an"];
+                break;
+            case "6-mois":
+                $tps = CHOIX_DATE["6 mois"];
+                break;
+            case "3-mois":
+                $tps = CHOIX_DATE["3 mois"];
+                break;
+            case "1-mois":
+                $tps = CHOIX_DATE["1 mois"];
+                break;
+            case "2-semaines":
+                $tps = CHOIX_DATE["2 semaines"];
+                break;
+            case "1-semaine":
+                $tps = CHOIX_DATE["1 semaine"];
+                break;
+            default:
+                $tps = 1000;
+        }
+    } else {
+        $tps = 1000;
+    }
+
+
+    if (isset($_GET['myfile'])) {
 
         switch ($_GET['myfile']):
             case "update":
@@ -30,15 +61,16 @@ if (isset($_SESSION['myidsession']) && $_SESSION['myidsession'] == session_id())
             case "load":
                 require "../controller/load.php";
         endswitch;
-    }else{
+    } else {
         require "../controller/privateController.php";
     }
 
 } else {
 
-    if(isset($_GET['myfile'])){
-        if(UserManager::disconnect()) header("Location: ./"); exit();
-    }else {
+    if (isset($_GET['myfile'])) {
+        if (UserManager::disconnect()) header("Location: ./");
+        exit();
+    } else {
         require "../controller/publicController.php";
     }
 

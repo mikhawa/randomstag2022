@@ -11,7 +11,7 @@ class AnneeManager implements ManagerInterface
         $this->connect = $db;
     }
 
-    public function SelectStatsByAnneeAndDate(int $idannee, int $date): array|string
+    public function SelectStatsByAnneeAndDate(int $idannee, int $date = 1000): array|string
     {
         $sql = "SELECT a.*, (SELECT COUNT(r.idreponseslog)  FROM reponseslog r WHERE r.annee_idannee = :annee AND  r.reponseslogcol = 3) AS vgood,
                 (SELECT COUNT(r.idreponseslog) FROM reponseslog r WHERE r.annee_idannee = :annee AND r.reponseslogcol = 2) AS good,

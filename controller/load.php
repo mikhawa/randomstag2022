@@ -7,7 +7,7 @@ $statsManager = new AnneeManager($connect);
 
 $idan = (int)$_GET['idan'];
 
-$stats = $statsManager->SelectStatsByAnneeAndDate($idan,450);
+$stats = $statsManager->SelectStatsByAnneeAndDate($idan,$tps);
 // var_dump($_GET);
 // si on a bien reçu le formulaire
 if (isset($_GET['partie'])) {
