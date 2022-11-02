@@ -24,31 +24,31 @@ if (isset($_SESSION['myidsession']) && $_SESSION['myidsession'] == session_id())
     if (isset($_GET['temps'])) {
         switch ($_GET['temps']) {
             case "Tous":
-                $tps = CHOIX_DATE["tous"];
+                $tps = Calcul::laDate(CHOIX_DATE["tous"]);
                 break;
             case "1-an":
-                $tps = CHOIX_DATE["1 an"];
+                $tps = Calcul::laDate(CHOIX_DATE["1 an"]);
                 break;
             case "6-mois":
-                $tps = CHOIX_DATE["6 mois"];
+                $tps = Calcul::laDate(CHOIX_DATE["6 mois"]);
                 break;
             case "3-mois":
-                $tps = CHOIX_DATE["3 mois"];
+                $tps = Calcul::laDate(CHOIX_DATE["3 mois"]);
                 break;
             case "1-mois":
-                $tps = CHOIX_DATE["1 mois"];
+                $tps = Calcul::laDate(CHOIX_DATE["1 mois"]);
                 break;
             case "2-semaines":
-                $tps = CHOIX_DATE["2 semaines"];
+                $tps = Calcul::laDate(CHOIX_DATE["2 semaines"]);
                 break;
             case "1-semaine":
-                $tps = CHOIX_DATE["1 semaine"];
+                $tps = Calcul::laDate(CHOIX_DATE["1 semaine"]);
                 break;
             default:
-                $tps = 1000;
+                $tps = Calcul::laDate(CHOIX_DATE["tous"]);
         }
     } else {
-        $tps = 1000;
+        $tps = Calcul::laDate(CHOIX_DATE["tous"]);
     }
 
 

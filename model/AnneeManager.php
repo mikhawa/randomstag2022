@@ -11,13 +11,13 @@ class AnneeManager implements ManagerInterface
         $this->connect = $db;
     }
 
-    public function SelectStatsByAnneeAndDate(int $idannee, int $date = 1000): array|string
+    public function SelectStatsByAnneeAndDate(int $idannee, string $temps): array|string
     {
-        $sql = "SELECT a.*, (SELECT COUNT(r.idreponseslog)  FROM reponseslog r WHERE r.annee_idannee = :annee AND  r.reponseslogcol = 3) AS vgood,
-                (SELECT COUNT(r.idreponseslog) FROM reponseslog r WHERE r.annee_idannee = :annee AND r.reponseslogcol = 2) AS good,
-                (SELECT COUNT(r.idreponseslog) FROM reponseslog r WHERE r.annee_idannee = :annee AND r.reponseslogcol = 1) AS nogood,
-                (SELECT COUNT(r.idreponseslog) FROM reponseslog r WHERE r.annee_idannee = :annee AND r.reponseslogcol = 0) AS absent,  
-                (SELECT COUNT(r.idreponseslog) FROM reponseslog r WHERE r.annee_idannee = :annee) AS sorties
+        $sql = "SELECT a.*, (SELECT COUNT(r.idreponseslog)  FROM reponseslog r WHERE r.annee_idannee = :annee AND  r.reponseslogcol = 3 AND r.reponseslogdate > :temps) AS vgood,
+                (SELECT COUNT(r.idreponseslog) FROM reponseslog r WHERE r.annee_idannee = :annee AND r.reponseslogcol = 2 AND r.reponseslogdate > :temps) AS good,
+                (SELECT COUNT(r.idreponseslog) FROM reponseslog r WHERE r.annee_idannee = :annee AND r.reponseslogcol = 1 AND r.reponseslogdate > :temps) AS nogood,
+                (SELECT COUNT(r.idreponseslog) FROM reponseslog r WHERE r.annee_idannee = :annee AND r.reponseslogcol = 0 AND r.reponseslogdate > :temps) AS absent,  
+                (SELECT COUNT(r.idreponseslog) FROM reponseslog r WHERE r.annee_idannee = :annee AND r.reponseslogdate > :temps) AS sorties
                                         
                 FROM annee a
                 WHERE a.idannee  = :annee
@@ -27,7 +27,12 @@ class AnneeManager implements ManagerInterface
 
         try {
 
-            $prepare->execute(['annee'=>$idannee]);
+            $prepare->execute(
+                [
+                'annee'=>$idannee,
+                'temps'=>$temps
+                ]
+            );
             return $prepare->fetch(PDO::FETCH_ASSOC);
 
         } catch (Exception $e) {

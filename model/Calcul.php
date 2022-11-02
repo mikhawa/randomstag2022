@@ -12,4 +12,10 @@ class Calcul
         endif;
         return $retour;
     }
+
+    public static function laDate(int $days):string{
+
+        $date = time() - ($days*60*60*24);
+        return date("Y-m-d H:i:s",$date);
+    }
 }
