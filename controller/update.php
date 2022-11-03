@@ -11,8 +11,6 @@ if (isset($_POST['idstag'])) {
     $idstag = (int)$_POST['idstag'];
     $idan = (int)$_POST['idan'];
     $points = (int)$_POST['points'];
-    // appel des statistiques globales
-    $stats = $statsManager->SelectStatsByAnneeAndDate($idan,$tps);
     // appel de la mise à jour du stagiaire
     $update = $stagiairesManager->updatePointsStagiaireById($idstag, $points, $idan);
     echo $update;
