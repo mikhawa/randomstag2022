@@ -18,8 +18,7 @@ class StagiairesManager implements ManagerInterface
                 (SELECT COUNT(r.idreponseslog) FROM reponseslog r WHERE r.stagiaires_idstagiaires = s.idstagiaires AND r.reponseslogcol = 2 AND r.reponseslogdate > :temps) AS good,
                 (SELECT COUNT(r.idreponseslog) FROM reponseslog r WHERE r.stagiaires_idstagiaires = s.idstagiaires AND r.reponseslogcol = 1 AND r.reponseslogdate > :temps) AS nogood,
                 (SELECT COUNT(r.idreponseslog) FROM reponseslog r WHERE r.stagiaires_idstagiaires = s.idstagiaires AND r.reponseslogcol = 0 AND r.reponseslogdate > :temps) AS absent,  
-                (SELECT COUNT(r.idreponseslog) FROM reponseslog r WHERE r.stagiaires_idstagiaires = s.idstagiaires AND r.reponseslogdate > :temps) AS sorties #, vgood+good+nogood+absent AS points
-, (vgood*3) as points
+                (SELECT COUNT(r.idreponseslog) FROM reponseslog r WHERE r.stagiaires_idstagiaires = s.idstagiaires AND r.reponseslogdate > :temps) AS sorties 
                     FROM stagiaires s
                     WHERE s.annee_idannee = :annee
                     ;";
@@ -67,11 +66,8 @@ class StagiairesManager implements ManagerInterface
     public function updatePointsStagiaireById(int $idstagiaire, int $newPoint, int $idannee)
     {
 
-        // Début de transaction
-        $this->connect->beginTransaction();
 
         try {
-
 
             // insertion des logs
             $sql = "INSERT INTO reponseslog (reponseslogcol,stagiaires_idstagiaires,user_iduser,annee_idannee) VALUES (?,?,?,?);";
@@ -79,10 +75,8 @@ class StagiairesManager implements ManagerInterface
             $prepare->execute([$newPoint, $idstagiaire,$_SESSION['iduser'],$idannee]);
 
 
-            $this->connect->commit();
-
         } catch (Exception $e) {
-            $this->connect->rollBack();
+
             return $e->getMessage();
         }
     }
