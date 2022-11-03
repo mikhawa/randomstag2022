@@ -25,7 +25,7 @@ if (isset($_GET['partie'])) {
         echo $sortie;
 
     elseif ($_GET['partie'] == 'equipe'):
-        $recupAllStagiaires = $stagiairesManager->SelectOnlyStagiairesByIdAnnee($idan);
+        $recupAllStagiaires = Calcul::calculPoints($stagiairesManager->SelectOnlyStagiairesByIdAnnee($idan,$tps));
 
         $i = 1;
         $sortie = "";

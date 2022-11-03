@@ -41,14 +41,14 @@ function choix(idannee,idstagiaire,nom)
 }
 
 document.getElementById('b3').onclick = () => {
-    onUpdate(document.getElementById("idstagiaire").textContent, document.getElementById("idannee").textContent, "tbien");
+    onUpdate(document.getElementById("idstagiaire").textContent, document.getElementById("idannee").textContent, 3);
 }
 document.getElementById('b2').onclick = () => {
-    onUpdate(document.getElementById("idstagiaire").textContent, document.getElementById("idannee").textContent, "bien");
+    onUpdate(document.getElementById("idstagiaire").textContent, document.getElementById("idannee").textContent, 2);
 }
 document.getElementById('b1').onclick = () => {
-    onUpdate(document.getElementById("idstagiaire").textContent, document.getElementById("idannee").textContent, "pbien");
+    onUpdate(document.getElementById("idstagiaire").textContent, document.getElementById("idannee").textContent, 1);
 }
 document.getElementById('b0').onclick = () => {
-    onUpdate(document.getElementById("idstagiaire").textContent, document.getElementById("idannee").textContent, "absent");
+    onUpdate(document.getElementById("idstagiaire").textContent, document.getElementById("idannee").textContent, 0);
 }
