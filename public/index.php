@@ -23,7 +23,7 @@ if (isset($_SESSION['myidsession']) && $_SESSION['myidsession'] == session_id())
 
     if (isset($_GET['temps'])) {
         switch ($_GET['temps']) {
-            case "Tous":
+            case "tous":
                 $tps = Calcul::laDate(CHOIX_DATE["tous"]);
                 break;
             case "1-an":

@@ -3,22 +3,22 @@ const httpRequest2 = new XMLHttpRequest();
 const httpRequest3 = new XMLHttpRequest();
 const httpRequest4 = new XMLHttpRequest();
 
-function onUpdate(idstag, idan, point) {
+function onUpdate(idstag, idan, point, temps) {
     httpRequest.onreadystatechange = () => {
         if (httpRequest.readyState == 4 && httpRequest.status == 200) {
             document.getElementById("test").innerHTML = httpRequest.responseText;
-            onLoadPage('hasard', 'hasard', httpRequest2);
-            onLoadPage('statstotal', 'general', httpRequest3);
-            onLoadPage('updateAllStagiaires', 'equipe', httpRequest4);
+            onLoadPage('hasard', 'hasard', httpRequest2, temps);
+            onLoadPage('statstotal', 'general', httpRequest3, temps);
+            onLoadPage('updateAllStagiaires', 'equipe', httpRequest4, temps);
         }
     }
-    httpRequest.open('POST', 'index.php?myfile=update', true);
+    httpRequest.open('POST', 'index.php?temps='+temps+'&myfile=update', true);
     httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     httpRequest.send("idstag=" + idstag +
         "&idan=" + idan + "&points=" + point);
 }
 
-function onLoadPage(idLoad, Lurl, num) {
+function onLoadPage(idLoad, Lurl, num, temps) {
 
     num.onreadystatechange = () => {
         if (num.readyState == 4 && num.status == 200) {
@@ -28,7 +28,7 @@ function onLoadPage(idLoad, Lurl, num) {
         }
     }
     let idan = 1;
-    num.open('POST', 'index.php?myfile=load&partie=' + Lurl + '&idan=' + idan + '&cache=' + (new Date()).getTime(), true);
+    num.open('POST', 'index.php?temps='+temps+'&myfile=load&partie=' + Lurl + '&idan=' + idan + '&cache=' + (new Date()).getTime(), true);
     num.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     num.send("temps=" + (new Date()).getTime(), true);
 }
@@ -41,14 +41,14 @@ function choix(idannee,idstagiaire,nom)
 }
 
 document.getElementById('b3').onclick = () => {
-    onUpdate(document.getElementById("idstagiaire").textContent, document.getElementById("idannee").textContent, 3);
+    onUpdate(document.getElementById("idstagiaire").textContent, document.getElementById("idannee").textContent, 3,document.getElementById("temps").textContent);
 }
 document.getElementById('b2').onclick = () => {
-    onUpdate(document.getElementById("idstagiaire").textContent, document.getElementById("idannee").textContent, 2);
+    onUpdate(document.getElementById("idstagiaire").textContent, document.getElementById("idannee").textContent, 2,document.getElementById("temps").textContent);
 }
 document.getElementById('b1').onclick = () => {
-    onUpdate(document.getElementById("idstagiaire").textContent, document.getElementById("idannee").textContent, 1);
+    onUpdate(document.getElementById("idstagiaire").textContent, document.getElementById("idannee").textContent, 1,document.getElementById("temps").textContent);
 }
 document.getElementById('b0').onclick = () => {
-    onUpdate(document.getElementById("idstagiaire").textContent, document.getElementById("idannee").textContent, 0);
+    onUpdate(document.getElementById("idstagiaire").textContent, document.getElementById("idannee").textContent, 0,document.getElementById("temps").textContent);
 }

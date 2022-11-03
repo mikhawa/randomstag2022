@@ -61,10 +61,15 @@ if (isset($_GET['partie'])) {
         $recupOneStagiaire = $stagiairesManager->SelectOneRandomStagiairesByIdAnnee($idan);
 
         $sortie = "<div  class='modal-header'><h5 class='modal-title' id='staticBackdropLabel'>Question pour " . $recupOneStagiaire["prenom"] . " " . substr($recupOneStagiaire['nom'], 0, 1) . "</h5>
-            <button type=\"button\" onclick=\"onLoadPage('hasard', 'hasard', new XMLHttpRequest());\" class=\"btn-close\" data-bs-dismiss=\"modal\" aria-label=\"Close\">
+            <button type=\"button\" onclick=\"onLoadPage('hasard', 'hasard', new XMLHttpRequest(),'";
+        $sortie .=  (isset($_GET['temps'])) ? $_GET['temps'] : 'tous';
+        $sortie.="');\" class=\"btn-close\" data-bs-dismiss=\"modal\" aria-label=\"Close\">
             </div>
             <div id='idstagiaire' class='visually-hidden'>" . $recupOneStagiaire['idstagiaires'] . "</div>
-                <div id='idannee' class='visually-hidden'>$idan</div>
+                <div id='idannee' class='visually-hidden'>$idan</div>";
+        $sortie.='<div id="temps" class="visually-hidden">';
+        $sortie.=(isset($_GET['temps'])) ? $_GET['temps'] : 'tous';
+        $sortie.="</div>        
             </div>
             ";
         echo $sortie;
