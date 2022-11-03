@@ -24,9 +24,20 @@
     <!-- End Matomo Code -->
 </head>
 <body>
-<div class="d-grid gap-2 d-md-flex justify-content-md-end"><a href="?disconnect">
-        <button type="button" class="btn btn-primary">Déconnexion</button>
+<nav class="navbar navbar-expand-lg navbar-light  justify-content-md-end" style="background-color: #e3f2fd;">
+<div class="d-grid gap-2 d-md-flex">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="?temps=tous">Tous</a></li>
+        <li class="nav-item"><a class="nav-link" href="?temps=1-an">1 an</a></li>
+        <li class="nav-item"><a class="nav-link" href="?temps=6-mois">6 mois</a></li>
+        <li class="nav-item"><a class="nav-link" href="?temps=3-mois">3 mois</a></li>
+        <li class="nav-item"><a class="nav-link" href="?temps=1-mois">1 mois</a></li>
+        <li class="nav-item"><a class="nav-link" href="?temps=2-semaines">2 semaines</a></li>
+        <li class="nav-item"><a class="nav-link" href="?temps=1-semaine">1 semaine</a></li>
+    </ul>
+    <a href="?disconnect"><button type="button" class="btn btn-primary">Déconnexion</button>
     </a></div>
+</nav>
 <div class="col-lg-11 mx-auto p-3 py-md-5">
     <header class="d-flex align-items-center pb-3 mb-2 border-bottom">
         <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
@@ -129,7 +140,7 @@
 </main>
 <footer class="pt-5 my-5 text-center text-muted border-top">
     Michaël Pitz - <a href="https://www.cf2m.be" target="_blank" title="Centre de formation CF2m">CF2m</a>
-    &copy; <?= date("Y") ?>
+    - <a href="https://www.pixelandco.be/" target="_blank" title="Design et sites">Pixelandco</a> &copy; <?= date("Y") ?>
 </footer>
 </div>
 
@@ -142,11 +153,13 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">Question
                         pour <?= $recupOneStagiaire["prenom"] . " " . substr($recupOneStagiaire['nom'], 0, 1) ?>.</h5>
-                    <button type="button" onclick="onLoadPage('hasard', 'hasard', new XMLHttpRequest());"
+                    <button type="button" onclick="onLoadPage('hasard', 'hasard', new XMLHttpRequest(),'<?php
+                     echo (isset($_GET['temps'])) ? $_GET['temps'] : 'tous'; ?>' );"
                             class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                 </div>
                 <div id="idstagiaire" class="visually-hidden"><?= $recupOneStagiaire['idstagiaires'] ?></div>
                 <div id="idannee" class="visually-hidden">1</div>
+                <div id="temps" class="visually-hidden"><?php echo (isset($_GET['temps'])) ? $_GET['temps'] : 'tous'; ?></div>
             </div>
             <div class="modal-body">
                 Il suffit de répondre à la question
