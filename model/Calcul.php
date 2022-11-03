@@ -19,6 +19,7 @@ class Calcul
         return date("Y-m-d H:i:s",$date);
     }
 
+    // créer les points par rapport aux logs et remettre le tableau dans l'ordre des points!
     public static function calculPoints(array $ori):array{
         $new =$ori;
         $i=0;
@@ -27,6 +28,12 @@ class Calcul
             $new[$key]['points'] = ($valeur['vgood']*2)+($valeur['good'])-($valeur['nogood'])-($valeur['absent']);
             $i++;
         }
+
+        // sélection de la colonne pour le tri
+        $points  = array_column($new, 'points');
+        // tri de la colonne
+        array_multisort($points,SORT_DESC, $new);
+
         return $new;
     }
 }
