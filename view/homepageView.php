@@ -25,9 +25,13 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light  justify-content-md-end" style="background-color: #e3f2fd;">
-<div class="d-grid gap-2 d-md-flex">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link" href="?temps=tous">Tous</a></li>
+        <li class="nav-item"><a class="nav-link" href="./">Tous</a></li>
         <li class="nav-item"><a class="nav-link" href="?temps=1-an">1 an</a></li>
         <li class="nav-item"><a class="nav-link" href="?temps=6-mois">6 mois</a></li>
         <li class="nav-item"><a class="nav-link" href="?temps=3-mois">3 mois</a></li>
@@ -36,7 +40,9 @@
         <li class="nav-item"><a class="nav-link" href="?temps=1-semaine">1 semaine</a></li>
     </ul>
     <a href="?disconnect"><button type="button" class="btn btn-primary">Déconnexion</button>
-    </a></div>
+    </a>
+        </div>
+    </div>
 </nav>
 <div class="col-lg-11 mx-auto p-3 py-md-5">
     <header class="d-flex align-items-center pb-3 mb-2 border-bottom">
