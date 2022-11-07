@@ -115,7 +115,9 @@
             <p>Nombre d'absences' :
                 <strong><?= Calcul::Pourcent($recupStats["absent"], $recupStats["sorties"]) ?></strong></p>
         </div>
-        <div class="col p-2"></div>
+        <div class="col p-2">
+    <img src="img/plots1.php?p1=<?=$recupStats["vgood"]?>&p2=<?=$recupStats["good"]?>&p3=<?=$recupStats["nogood"]?>&p4=<?=$recupStats["absent"]?>" alt="Points">
+        </div>
     </div>
 </div>
 </main>
