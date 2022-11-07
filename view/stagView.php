@@ -73,7 +73,10 @@
     <tbody id="updateAllStagiaires">
     <?php
     $i = 1;
+    $urlplots2 = "?";
     foreach ($recupAllStagiaires as $item):
+        $urlplots2.="n$i={$item["prenom"]}  ".substr($item['nom'], 0, 1);
+        $urlplots2.="&p$i={$item["points"]}&";
         ?>
         <tr>
             <th scope="row"><?= $i ?></th>
@@ -116,7 +119,12 @@
                 <strong><?= Calcul::Pourcent($recupStats["absent"], $recupStats["sorties"]) ?></strong></p>
         </div>
         <div class="col p-2">
-    <img src="img/plots1.php?p1=<?=$recupStats["vgood"]?>&p2=<?=$recupStats["good"]?>&p3=<?=$recupStats["nogood"]?>&p4=<?=$recupStats["absent"]?>" alt="Points">
+    <img src="img/plots1.php?p1=<?=$recupStats["vgood"]?>&p2=<?=$recupStats["good"]?>&p3=<?=$recupStats["nogood"]?>&p4=<?=$recupStats["absent"]?>" alt="Points" width="60%">
+        </div>
+        <div class="row">
+            <div class="col">
+                <img src="img/plots2.php<?=$urlplots2?>" alt="Points" width="100%">
+            </div>
         </div>
     </div>
 </div>
