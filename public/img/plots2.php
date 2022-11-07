@@ -17,7 +17,7 @@ for ($i=1;$i<=$nb;$i++){
 
 $graph->SetBox(false);
 
-$graph->ygrid->SetColor('blue');
+$graph->ygrid->SetColor('gray');
 $graph->ygrid->SetFill(false);
 $graph->xaxis->SetTickLabels($label);
 $graph->yaxis->HideLine(false);
