@@ -5,13 +5,13 @@ require_once "../../vendor/autoload.php";
 use Amenadiel\JpGraph\Graph;
 use Amenadiel\JpGraph\Plot;
 // Create the Pie Graph.
-$graph = new Graph\Graph(1200, 400,'auto');
+$graph = new Graph\Graph(1200, 500,'auto');
 $graph->SetScale("textlin");
 
 
 $nb = count($_GET)/2;
 for ($i=1;$i<=$nb;$i++){
-    $label[]=substr($_GET["n$i"],0,8);
+    $label[]=substr($_GET["n$i"],0,9);
     $datay[]=$_GET["p$i"];
 }
 
