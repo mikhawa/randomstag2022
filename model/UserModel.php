@@ -8,6 +8,7 @@ class UserModel extends AbstractModel
     protected string $userpwd;
     protected string $themail;
     protected string $clefunique;
+    protected int $perm;
 
     /**
      * @return int
@@ -96,6 +97,24 @@ class UserModel extends AbstractModel
     public function setClefunique(string $clefunique): UserModel
     {
         $this->clefunique = $clefunique;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPerm(): int
+    {
+        return $this->perm;
+    }
+
+    /**
+     * @param int $perm
+     * @return UserModel
+     */
+    public function setPerm(int $perm): UserModel
+    {
+        $this->perm = $perm;
         return $this;
     }
 
