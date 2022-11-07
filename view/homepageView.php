@@ -6,7 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="icon" type="image/x-icon" href="img/logo.png"/>
-    <title>Et la question est pour ...  depuis le <?=substr($tps,0,-9)?></title>
+    <title>Et la question est pour ...  depuis <?=$letps?></title>
     <!-- Matomo -->
     <script>
         var _paq = window._paq = window._paq || [];
@@ -54,7 +54,7 @@
 
     <main>
         <div class="col-lg-11 mx-auto p-3 py-md-5">
-            <h1 class="h2">Groupe Webdev 2022-2023  depuis le <?=substr($tps,0,-9)?></h1>
+            <h1 class="h2">Groupe Webdev 2022-2023  depuis <?=$letps?></h1>
             <p class=" h3 fs-5 pb-4 col-md-8">Une question, un.e stagiaire, une réponse !</p>
         </div>
         <?php // var_dump($_SESSION);?>

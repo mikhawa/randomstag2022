@@ -6,7 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="icon" type="image/x-icon" href="img/logo.png"/>
-    <title>Statistiques stagiaires | <?=$recupStats['section']?> <?=$recupStats['annee']?> depuis le <?=substr($tps,0,-9)?></title>
+    <title>Statistiques stagiaires | <?=$recupStats['section']?> <?=$recupStats['annee']?> depuis  <?=$letps?></title>
     <!-- Matomo -->
     <script>
         var _paq = window._paq = window._paq || [];
@@ -48,7 +48,7 @@
     <header class="d-flex align-items-center pb-3 mb-2 border-bottom">
         <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
             <img src="img/logo.png" width="45" height="40"/>
-            <span class="fs-3 ps-2">Statistiques stagiaires | <?=$recupStats['section']?> <?=$recupStats['annee']?> depuis le <?=substr($tps,0,-9)?></span>
+            <span class="fs-3 ps-2">Statistiques stagiaires | <?=$recupStats['section']?> <?=$recupStats['annee']?> depuis <?=$letps?></span>
         </a>
     </header>
 
@@ -100,7 +100,7 @@
     ?>
     </tbody>
 </table>
-<h2 class="h5">Statistiques Globales de <?=$recupStats['section']?> <?=$recupStats['annee']?>  depuis le <?=substr($tps,0,-9)?></h2>
+<h2 class="h5">Statistiques Globales de <?=$recupStats['section']?> <?=$recupStats['annee']?>  depuis <?=$letps?></h2>
 <hr/>
 <div class="text-left">
     <div class="row">
