@@ -41,6 +41,7 @@ class UserManager implements ManagerInterface
         $_SESSION['myidsession']= session_id();
         $_SESSION['username']=$user->getUsername();
         $_SESSION['iduser']=$user->getIduser();
+        $_SESSION['perm']=$user->getPerm();
         $_SESSION['clefunique']=$user->getClefunique();
         $_SESSION['usermail']=$user->getThemail();
 

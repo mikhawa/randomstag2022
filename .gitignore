@@ -9,8 +9,5 @@ config.php
 /datas/coolcoldenV2.mwb.bak
 
 # Données critiques
-/datas/coolcolden-structure-datas.sql
-/datas/coolcolden-structure-datasV2.sql
-/datas/coolcolden-structure-datasV3.sql
-/datas/coolcolden-structure-datasV4.sql
+/datas/coolcolden-structure-datas*
 

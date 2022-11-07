@@ -51,6 +51,13 @@ if (isset($_SESSION['myidsession']) && $_SESSION['myidsession'] == session_id())
         $tps = Calcul::laDate(CHOIX_DATE["tous"]);
     }
 
+    if($_SESSION['perm']==0){
+
+        require "../controller/stagController.php";
+
+        exit();
+    }
+
 
     if (isset($_GET['myfile'])) {
 

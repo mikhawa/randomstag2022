@@ -12,9 +12,9 @@ if(isset($_POST['username'],$_POST['userpwd'])){
         $error = "<p style='text-align: center'>Login ou mot de passe incorrecte.</p>";
     }
 
-    // var_dump($user);
-    //echo password_hash($user->getUserpwd(), PASSWORD_DEFAULT);
-    // echo "<hr>".uniqid(true);
+     //var_dump($user);
+     //echo password_hash($user->getUserpwd(), PASSWORD_DEFAULT);
+     //echo "<hr>".uniqid(true);
 
 }
 
