@@ -17,7 +17,7 @@ for ($i=1;$i<=$nb;$i++){
 
 $graph->SetBox(false);
 
-$graph->ygrid->SetColor('gray');
+$graph->ygrid->SetColor('blue');
 $graph->ygrid->SetFill(false);
 $graph->xaxis->SetTickLabels($label);
 $graph->yaxis->HideLine(false);
@@ -30,7 +30,8 @@ $b1plot = new Plot\BarPlot($datay);
 // ...and add it to the graPH
 $graph->Add($b1plot);
 
-$b1plot->SetColor("white","blue");
+$b1plot->SetColor("white");
+$b1plot->SetFillGradient("blue","white",GRAD_LEFT_REFLECTION);
 $b1plot->SetWidth(30);
 $graph->title->Set("Top de la classe");
 
