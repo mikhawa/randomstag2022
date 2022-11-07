@@ -7,6 +7,8 @@ date_default_timezone_set('Europe/Brussels');
 
 require_once "../config.php";
 
+require_once "../vendor/autoload.php";
+
 // Personal autoload
 spl_autoload_register(function ($class) {
     include_once '../model/' . str_replace('\\', '/', $class) . '.php';

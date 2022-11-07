@@ -11,3 +11,5 @@ config.php
 # Données critiques
 /datas/coolcolden-structure-datas*
 
+# Bibliothèques
+/vendor
