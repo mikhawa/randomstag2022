@@ -168,7 +168,8 @@
                 <div id="temps" class="visually-hidden"><?php echo (isset($_GET['temps'])) ? $_GET['temps'] : 'tous'; ?></div>
             </div>
             <div class="modal-body">
-                Il suffit de répondre à la question
+                <p>Il suffit de répondre à la question</p>
+                <textarea name="remarque" id="remarque"></textarea>
             </div>
 
             <div class="modal-footer">
