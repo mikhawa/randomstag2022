@@ -63,16 +63,16 @@ class StagiairesManager implements ManagerInterface
         }
     }
 
-    public function updatePointsStagiaireById(int $idstagiaire, int $newPoint, int $idannee)
+    public function updatePointsStagiaireById(int $idstagiaire, int $newPoint, int $idannee, string|null $remarque)
     {
 
 
         try {
 
             // insertion des logs
-            $sql = "INSERT INTO reponseslog (reponseslogcol,stagiaires_idstagiaires,user_iduser,annee_idannee) VALUES (?,?,?,?);";
+            $sql = "INSERT INTO reponseslog (reponseslogcol,stagiaires_idstagiaires,user_iduser,annee_idannee,remarque) VALUES (?,?,?,?,?);";
             $prepare = $this->connect->prepare($sql);
-            $prepare->execute([$newPoint, $idstagiaire,$_SESSION['iduser'],$idannee]);
+            $prepare->execute([$newPoint, $idstagiaire,$_SESSION['iduser'],$idannee,$remarque]);
 
 
         } catch (Exception $e) {

@@ -3,7 +3,7 @@ const httpRequest2 = new XMLHttpRequest();
 const httpRequest3 = new XMLHttpRequest();
 const httpRequest4 = new XMLHttpRequest();
 
-function onUpdate(idstag, idan, point, temps) {
+function onUpdate(idstag, idan, point, temps, remarque='') {
     httpRequest.onreadystatechange = () => {
         if (httpRequest.readyState == 4 && httpRequest.status == 200) {
             document.getElementById("test").innerHTML = httpRequest.responseText;
@@ -15,7 +15,7 @@ function onUpdate(idstag, idan, point, temps) {
     httpRequest.open('POST', 'index.php?temps='+temps+'&myfile=update', true);
     httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     httpRequest.send("idstag=" + idstag +
-        "&idan=" + idan + "&points=" + point);
+        "&idan=" + idan + "&points=" + point +"&remarque="+ remarque);
 }
 
 function onLoadPage(idLoad, Lurl, num, temps) {
@@ -41,14 +41,14 @@ function choix(idannee,idstagiaire,nom)
 }
 
 document.getElementById('b3').onclick = () => {
-    onUpdate(document.getElementById("idstagiaire").textContent, document.getElementById("idannee").textContent, 3,document.getElementById("temps").textContent);
+    onUpdate(document.getElementById("idstagiaire").textContent, document.getElementById("idannee").textContent, 3,document.getElementById("temps").textContent,document.getElementById("remarque").value);
 }
 document.getElementById('b2').onclick = () => {
-    onUpdate(document.getElementById("idstagiaire").textContent, document.getElementById("idannee").textContent, 2,document.getElementById("temps").textContent);
+    onUpdate(document.getElementById("idstagiaire").textContent, document.getElementById("idannee").textContent, 2,document.getElementById("temps").textContent,document.getElementById("remarque").value);
 }
 document.getElementById('b1').onclick = () => {
-    onUpdate(document.getElementById("idstagiaire").textContent, document.getElementById("idannee").textContent, 1,document.getElementById("temps").textContent);
+    onUpdate(document.getElementById("idstagiaire").textContent, document.getElementById("idannee").textContent, 1,document.getElementById("temps").textContent,document.getElementById("remarque").value);
 }
 document.getElementById('b0').onclick = () => {
-    onUpdate(document.getElementById("idstagiaire").textContent, document.getElementById("idannee").textContent, 0,document.getElementById("temps").textContent);
+    onUpdate(document.getElementById("idstagiaire").textContent, document.getElementById("idannee").textContent, 0,document.getElementById("temps").textContent,document.getElementById("remarque").value);
 }

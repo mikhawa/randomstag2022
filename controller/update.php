@@ -11,8 +11,9 @@ if (isset($_POST['idstag'])) {
     $idstag = (int)$_POST['idstag'];
     $idan = (int)$_POST['idan'];
     $points = (int)$_POST['points'];
+    $remarque = (empty($_POST['remarque']))? NULL : htmlspecialchars($_POST['remarque'],ENT_QUOTES);
     // appel de la mise à jour du stagiaire
-    $update = $stagiairesManager->updatePointsStagiaireById($idstag, $points, $idan);
+    $update = $stagiairesManager->updatePointsStagiaireById($idstag, $points, $idan,$remarque);
     echo $update;
     echo "Dernière mise à jour : " . date("Y-m-d H:i:s");
 }

@@ -53,7 +53,7 @@ if (isset($_GET['partie'])) {
 
             $i++;
         endforeach;
-        usleep(50000); // 0.05 seconde
+        //usleep(50000); // 0.05 seconde
         echo $sortie;
 
     elseif ($_GET['partie'] == 'hasard'):
