@@ -4,7 +4,6 @@
 class StagiairesModel extends AbstractModel
 {
     protected int $idstagiaires;
-    protected int $points;
     protected string $nom;
     protected string $prenom;
     protected int $annee_idannee;
@@ -27,23 +26,6 @@ class StagiairesModel extends AbstractModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
-    public function getPoints(): ?int
-    {
-        return $this->points;
-    }
-
-    /**
-     * @param int $points
-     * @return StagiairesModel
-     */
-    public function setPoints(?int $points): StagiairesModel
-    {
-        $this->points = $points;
-        return $this;
-    }
 
     /**
      * @return string
