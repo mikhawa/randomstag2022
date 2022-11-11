@@ -169,7 +169,7 @@
             </div>
             <div class="modal-body">
                 <p>Il suffit de répondre à la question</p>
-                <textarea name="remarque" id="remarque"></textarea>
+                <textarea name="remarque" id="remarque" rows="4" cols="40"></textarea>
             </div>
 
             <div class="modal-footer">
