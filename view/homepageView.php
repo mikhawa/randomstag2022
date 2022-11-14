@@ -38,6 +38,7 @@
         <li class="nav-item"><a class="nav-link" href="?temps=1-mois">1 mois</a></li>
         <li class="nav-item"><a class="nav-link" href="?temps=2-semaines">2 semaines</a></li>
         <li class="nav-item"><a class="nav-link" href="?temps=1-semaine">1 semaine</a></li>
+        <li class="nav-item"><a class="nav-link" href="?logs=1">logs</a></li>
     </ul>
     <a href="?disconnect"><button type="button" class="btn btn-primary">Déconnexion</button>
     </a>

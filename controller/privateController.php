@@ -6,16 +6,26 @@ if(isset($_GET['disconnect'])){
 
 $stagiairesManager = new StagiairesManager($connect);
 $statsManager = new AnneeManager($connect);
+$responseManager = new ReponselogManager($connect);
 
-$recupAllStagiaires = Calcul::calculPoints($stagiairesManager->SelectOnlyStagiairesByIdAnnee(1,$tps));
+// logs
+if(isset($_GET['logs'])&&ctype_digit($_GET['logs'])){
+    $logs = (int) $_GET['logs'];
+    $recupStats = $statsManager->SelectAllByAnnee($logs);
+    $recupLogs = $responseManager->selectAllLogsByAnnee($logs);
 
-$recupStats = $statsManager->SelectStatsByAnneeAndDate(1,$tps);
+    // View
+    require_once "../view/logView.php";
 
+// homepage admin
+}else {
 
+    $recupAllStagiaires = Calcul::calculPoints($stagiairesManager->SelectOnlyStagiairesByIdAnnee(1, $tps));
 
-$recupOneStagiaire = $stagiairesManager->SelectOneRandomStagiairesByIdAnnee(1);
+    $recupStats = $statsManager->SelectStatsByAnneeAndDate(1, $tps);
 
-// var_dump($recupOneStagiaire);
+    $recupOneStagiaire = $stagiairesManager->SelectOneRandomStagiairesByIdAnnee(1);
 
-// View
-require_once "../view/homepageView.php";
+    // View
+    require_once "../view/homepageView.php";
+}

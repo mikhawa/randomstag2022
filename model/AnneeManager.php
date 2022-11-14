@@ -42,4 +42,29 @@ class AnneeManager implements ManagerInterface
         }
     }
 
+    public function SelectAllByAnnee(int $idannee): array|string
+    {
+        $sql = "SELECT a.*
+                FROM annee a
+                WHERE a.idannee  = :annee
+
+                    ;";
+        $prepare = $this->connect->prepare($sql);
+
+        try {
+
+            $prepare->execute(
+                [
+                    'annee'=>$idannee,
+                ]
+            );
+            return $prepare->fetch(PDO::FETCH_ASSOC);
+
+        } catch (Exception $e) {
+
+            return $e->getMessage();
+
+        }
+    }
+
 }
