@@ -54,7 +54,22 @@
             <p><?php
             foreach($recupLogs as $item):
 
-                echo "{$item['reponseslogdate']} | ID : {$item['idreponseslog']} | Points : {$item['reponseslogcol']} | Pour {$item['nom']} {$item['prenom']} | Par {$item['username']} | commentaire : {$item['remarque']}<br>";
+                echo "{$item['reponseslogdate']} | ID : {$item['idreponseslog']} | Points :";
+                switch($item['reponseslogcol']):
+                    case 3 :
+                        echo " +2 ";
+                        break;
+                    case 2 :
+                        echo " +1 ";
+                        break;
+                    case 1 :
+                        echo " -1 (mauvaise réponse) ";
+                        break;
+                    case 0 :
+                        echo " -1 (absence) ";
+                        break;
+                endswitch;
+                echo "| Pour {$item['nom']} {$item['prenom']} | Par {$item['username']} | commentaire : {$item['remarque']}<br>";
 
             endforeach;
 
@@ -68,8 +83,6 @@
 </footer>
 </div>
 
-
-<script src="js/myAjax.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
