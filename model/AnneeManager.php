@@ -33,6 +33,11 @@ class AnneeManager implements ManagerInterface
                 'temps'=>$temps
                 ]
             );
+
+            if($prepare->rowCount()==0){
+                throw new Exception("Pas de stagiaires de cette classe dans ce temps");
+            }
+
             return $prepare->fetch(PDO::FETCH_ASSOC);
 
         } catch (Exception $e) {
@@ -58,9 +63,11 @@ class AnneeManager implements ManagerInterface
                     'annee'=>$idannee,
                 ]
             );
+
             if($prepare->rowCount()==0){
                 throw new Exception("Année non existante");
             }
+
             return $prepare->fetch(PDO::FETCH_ASSOC);
 
         } catch (Exception $e) {
