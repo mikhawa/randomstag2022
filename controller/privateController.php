@@ -14,6 +14,7 @@ if(isset($_GET['logs'])&&ctype_digit($_GET['logs'])){
     $recupStats = $statsManager->SelectAllByAnnee($logs);
     $recupLogs = $responseManager->selectAllLogsByAnnee($logs);
 
+    if(is_string($recupStats)) die($recupStats);
     // View
     require_once "../view/logView.php";
 

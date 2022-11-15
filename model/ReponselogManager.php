@@ -26,6 +26,9 @@ class ReponselogManager implements ManagerInterface
 
         try{
             $prepare->execute([$annee]);
+            if($prepare->rowCount()==0){
+                throw new Exception("Année non existante");
+            }
             return $prepare->fetchAll(PDO::FETCH_ASSOC);
         }catch(Exception $exception){
             return $exception->getMessage();

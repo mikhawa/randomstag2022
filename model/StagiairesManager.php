@@ -32,6 +32,9 @@ class StagiairesManager implements ManagerInterface
                     'temps'=>$temps
                 ]
             );
+            if($prepare->rowCount()==0){
+                throw new Exception("Année non existante");
+            }
             return $prepare->fetchAll(PDO::FETCH_ASSOC);
 
         } catch (Exception $e) {
@@ -54,6 +57,9 @@ class StagiairesManager implements ManagerInterface
         try {
 
             $prepare->execute([$idannee]);
+            if($prepare->rowCount()==0){
+                throw new Exception("Année non existante");
+            }
             return $prepare->fetch(PDO::FETCH_ASSOC);
 
         } catch (Exception $e) {

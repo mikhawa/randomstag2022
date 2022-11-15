@@ -58,6 +58,9 @@ class AnneeManager implements ManagerInterface
                     'annee'=>$idannee,
                 ]
             );
+            if($prepare->rowCount()==0){
+                throw new Exception("Année non existante");
+            }
             return $prepare->fetch(PDO::FETCH_ASSOC);
 
         } catch (Exception $e) {
