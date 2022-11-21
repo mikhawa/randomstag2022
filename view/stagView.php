@@ -73,10 +73,15 @@
     <tbody id="updateAllStagiaires">
     <?php
     $i = 1;
-    $urlplots2 = "?";
+    $urlplots2 = "?titre=Top points de la classe&";
+    $urlplots2b ="?titre=Top sorties de la classe&";
+    $j = 0;
     foreach ($recupAllStagiaires as $item):
         $urlplots2.="n$i={$item["prenom"]}  ".substr($item['nom'], 0, 1);
         $urlplots2.="&p$i={$item["points"]}&";
+        $urlplots2b.="n$i={$sortiesStagiaires[$j]["prenom"]}  ".substr($sortiesStagiaires[$j]['nom'], 0, 1);
+        $urlplots2b.="&p$i={$sortiesStagiaires[$j]["sorties"]}&";
+        $j++;
         ?>
         <tr>
             <th scope="row"><?= $i ?></th>
@@ -124,6 +129,11 @@
         <div class="row">
             <div class="col">
                 <img src="img/plots2.php<?=$urlplots2?>" alt="Points" width="100%">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <img src="img/plots2.php<?=$urlplots2b?>" alt="Sorties" width="100%">
             </div>
         </div>
     </div>

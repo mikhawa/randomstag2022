@@ -9,7 +9,14 @@ if(isset($_GET['disconnect'])){
 $stagiairesManager = new StagiairesManager($connect);
 $statsManager = new AnneeManager($connect);
 
-$recupAllStagiaires = Calcul::calculPoints($stagiairesManager->SelectOnlyStagiairesByIdAnnee(1,$tps));
+// tous les stagiaires de l'année:
+$recupAll = $stagiairesManager->SelectOnlyStagiairesByIdAnnee(1,$tps);
+
+// par points
+$recupAllStagiaires = Calcul::calculPoints($recupAll);
+
+// par sorties
+$sortiesStagiaires = Calcul::calculSorties($recupAll);
 
 $recupStats = $statsManager->SelectStatsByAnneeAndDate(1,$tps);
 

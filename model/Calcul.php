@@ -36,4 +36,16 @@ class Calcul
 
         return $new;
     }
+
+    // créer les % de sorties par rapport aux logs et remettre le tableau dans l'ordre des sorties!
+    public static function calculSorties(array $ori):array{
+        $new =$ori;
+
+        // sélection de la colonne pour le tri
+        $sorties  = array_column($new, 'sorties');
+        // tri de la colonne
+        array_multisort($sorties,SORT_DESC, $new);
+
+        return $new;
+    }
 }
