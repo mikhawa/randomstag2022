@@ -27,6 +27,10 @@ if(isset($_GET['logs'])&&ctype_digit($_GET['logs'])){
 
     $recupOneStagiaire = $stagiairesManager->SelectOneRandomStagiairesByIdAnnee(1);
 
+    if(is_string($recupAllStagiaires)) die($recupAllStagiaires);
+    if(is_string($recupStats)) die($recupStats);
+    if(is_string($recupOneStagiaire)) die($recupOneStagiaire);
+
     // View
     require_once "../view/homepageView.php";
 }

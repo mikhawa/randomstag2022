@@ -13,6 +13,8 @@ $recupAllStagiaires = Calcul::calculPoints($stagiairesManager->SelectOnlyStagiai
 
 $recupStats = $statsManager->SelectStatsByAnneeAndDate(1,$tps);
 
+if(is_string($recupAllStagiaires)) die($recupAllStagiaires);
+if(is_string($recupStats)) die($recupStats);
 
 // View
 require_once "../view/stagView.php";
