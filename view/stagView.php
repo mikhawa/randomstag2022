@@ -119,7 +119,7 @@
                 <strong><?= Calcul::Pourcent($recupStats["absent"], $recupStats["sorties"]) ?></strong></p>
         </div>
         <div class="col p-2">
-    <img src="img/plots1.php?p1=<?=$recupStats["vgood"]?>&p2=<?=$recupStats["good"]?>&p3=<?=$recupStats["nogood"]?>&p4=<?=$recupStats["absent"]?>" alt="Points" width="60%">
+    <img src="img/plots1.php?p1=<?=$recupStats["vgood"]?>&p2=<?=$recupStats["good"]?>&p3=<?=$recupStats["nogood"]?>&p4=<?=$recupStats["absent"]?>" alt="Points" width="80%">
         </div>
         <div class="row">
             <div class="col">

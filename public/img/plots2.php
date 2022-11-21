@@ -33,7 +33,7 @@ $graph->Add($b1plot);
 $b1plot->SetColor("white");
 $b1plot->SetFillGradient("blue","white",GRAD_LEFT_REFLECTION);
 $b1plot->SetWidth(30);
-$graph->title->Set("Top de la classe");
+$graph->title->Set("Top points de la classe");
 
 // Display the graph
 $graph->Stroke();
