@@ -11,10 +11,18 @@ $responseManager = new ReponselogManager($connect);
 // logs
 if(isset($_GET['logs'])&&ctype_digit($_GET['logs'])){
     $logs = (int) $_GET['logs'];
+    // année
     $recupStats = $statsManager->SelectAllByAnnee($logs);
-    $recupLogs = $responseManager->selectAllLogsByAnnee($logs);
+    // logs et pagination
+    $nblogs = $responseManager->countAllLogsByAnnee($logs);
+    $pg = (isset($_GET['page'])&&ctype_digit($_GET['page']))? (int) $_GET['page'] : 1;
+    $recupLogs = $responseManager->selectAllLogsByAnneeWithPG($logs,$pg);
+    $pagination = ReponselogManager::pagination($nblogs,"?logs=$logs",$pg,"page",100);
+
 
     if(is_string($recupStats)) die($recupStats);
+    if(is_string($recupLogs)) die($recupLogs);
+
     // View
     require_once "../view/logView.php";
 
