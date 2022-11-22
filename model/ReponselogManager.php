@@ -96,22 +96,26 @@ class ReponselogManager implements ManagerInterface
         $sortie ="";
 
         for($i=1; $i<=$nbPages; $i++){
-            if($page===1){
-                $sortie .= "<< < ";
-            }else{
-                $sortie .= "<a href='$url'><<</a> ";
-                $sortie .= "<a href='$url&$nomGet=".($i-1)."'><</a> ";
+            if($i===1) {
+                if ($page === 1) {
+                    $sortie .= "<< < ";
+                } else {
+                    $sortie .= "<a href='$url'><<</a> ";
+                    $sortie .= "<a href='$url&$nomGet=" . ($page - 1) . "'><</a> ";
+                }
             }
             if($page===$i){
                 $sortie .= " $i ";
             }else{
                 $sortie .= " <a href='$url&$nomGet=$i'>$i</a> ";
             }
-            if($page==$nbPages){
-                $sortie .= " > >> ";
-            }else{
-                $sortie .= "<a href='$url&$nomGet=".($i+1)."'>></a> ";
-                $sortie .= "<a href='$url&$nomGet=$nbPages'>>></a> ";
+            if($i==$nbPages) {
+                if ($page == $nbPages) {
+                    $sortie .= " > >> ";
+                } else {
+                    $sortie .= "<a href='$url&$nomGet=" . ($page + 1) . "'>></a> ";
+                    $sortie .= "<a href='$url&$nomGet=$nbPages'>>></a> ";
+                }
             }
         }
         return $sortie;
