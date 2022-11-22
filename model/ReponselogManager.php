@@ -101,13 +101,13 @@ class ReponselogManager implements ManagerInterface
                     $sortie .= "<< < ";
                 } else {
                     $sortie .= "<a href='$url'><<</a> ";
-                    $sortie .= "<a href='$url&$nomGet=" . ($page - 1) . "'><</a> ";
+                    $sortie .= ($page!=2) ? "<a href='$url&$nomGet=" . ($page - 1) . "'><</a> ": "<a href='$url'><</a> ";
                 }
             }
             if($page===$i){
                 $sortie .= " $i ";
             }else{
-                $sortie .= " <a href='$url&$nomGet=$i'>$i</a> ";
+                $sortie .= ($i===1) ? " <a href='$url'>$i</a> ": " <a href='$url&$nomGet=$i'>$i</a> ";
             }
             if($i==$nbPages) {
                 if ($page == $nbPages) {
