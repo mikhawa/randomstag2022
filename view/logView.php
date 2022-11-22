@@ -51,6 +51,7 @@
         <div class="col-lg-11 mx-auto p-3 py-md-5">
             <h1 class="h2">Log de <?=$recupStats['section']?> <?=$recupStats['annee']?></h1>
             <p class=" h3 fs-5 pb-4 col-md-8">Une question, un.e stagiaire, une réponse !</p>
+            <nav><?=$pagination?></nav>
             <p><?php
             foreach($recupLogs as $item):
 
@@ -74,6 +75,7 @@
             endforeach;
 
                 ?></p>
+            <nav><?=$pagination?></nav>
         </div>
 
 </main>

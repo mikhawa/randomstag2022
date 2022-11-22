@@ -35,6 +35,7 @@ class ReponselogManager implements ManagerInterface
         }
     }
 
+    // compte les logs par année
     public function countAllLogsByAnnee(int $annee): int|string {
         $query = $this->connect->prepare("SELECT count(r.idreponseslog) AS nb
         FROM reponseslog r
@@ -53,6 +54,7 @@ class ReponselogManager implements ManagerInterface
         }
     }
 
+    // logs avec pagination
     public function selectAllLogsByAnneeWithPG(int $annee, int $page=1, int $perPage=100): array|string{
 
         // début
@@ -67,12 +69,14 @@ class ReponselogManager implements ManagerInterface
             ON s.idstagiaires = r.stagiaires_idstagiaires
         WHERE r.annee_idannee = ?
         ORDER BY r.reponseslogdate DESC
-        LIMIT ?,?        
-;
+        LIMIT ?, ?;
         ");
 
         try{
-            $prepare->execute([$annee,$debut,$perPage]);
+            $prepare->bindParam(1,$annee);
+            $prepare->bindParam(2,$debut, PDO::PARAM_INT);
+            $prepare->bindParam(3,$perPage, PDO::PARAM_INT);
+            $prepare->execute();
             if($prepare->rowCount()==0){
                 throw new Exception("Année non existante");
             }
@@ -80,6 +84,37 @@ class ReponselogManager implements ManagerInterface
         }catch(Exception $exception){
             return $exception->getMessage();
         }
+    }
+
+    // Pagination
+    public static function pagination(int $nbItem,string $url, int $page=1,  string $nomGet="page", int $perPage=100): string {
+
+        $nbPages = ceil($nbItem/$perPage);
+
+        if($nbPages==1) return "1 page";
+
+        $sortie ="";
+
+        for($i=1; $i<=$nbPages; $i++){
+            if($page===1){
+                $sortie .= "<< < ";
+            }else{
+                $sortie .= "<a href='$url'><<</a> ";
+                $sortie .= "<a href='$url&$nomGet=".($i-1)."'><</a> ";
+            }
+            if($page===$i){
+                $sortie .= " $i ";
+            }else{
+                $sortie .= " <a href='$url&$nomGet=$i'>$i</a> ";
+            }
+            if($page==$nbPages){
+                $sortie .= " > >> ";
+            }else{
+                $sortie .= "<a href='$url&$nomGet=".($i+1)."'>></a> ";
+                $sortie .= "<a href='$url&$nomGet=$nbPages'>>></a> ";
+            }
+        }
+        return $sortie;
     }
 
 }
