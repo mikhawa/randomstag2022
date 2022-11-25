@@ -1,25 +1,39 @@
 <?php
+// start of session
 session_start([
+    // session.cookie_lifetime specifies the lifetime of the cookie in seconds
     'cookie_lifetime' => 86400,
 ]);
 
+// sets the default timezone used by all date/time functions in a script
 date_default_timezone_set('Europe/Brussels');
 
+// load dependencies
 require_once "../config.php";
 
 
-// Personal autoload
+// personal autoload to 'model' folder
 spl_autoload_register(function ($class) {
+
+    // include with namespace and name of class
     include_once '../model/' . str_replace('\\', '/', $class) . '.php';
 });
 
-// connect with PDO
+// try to connect with PDO
 try {
+
+    // connect with PDO
     $connect = new PDO('mysql:dbname=' . DB_NAME . ';host=' . DB_HOST . ';charset=' . DB_CHARSET . ';port=' . DB_PORT, DB_LOGIN, DB_PWD);
+
+// exception handling
 } catch (Exception $e) {
+
+    // stop with message
     die($e->getMessage());
+
 }
 
+// if you are logged in validly
 if (isset($_SESSION['myidsession']) && $_SESSION['myidsession'] == session_id()) {
 
     if (isset($_GET['temps'])) {
