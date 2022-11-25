@@ -36,9 +36,11 @@ try {
 // if you are logged in validly
 if (isset($_SESSION['myidsession']) && $_SESSION['myidsession'] == session_id()) {
 
+    // management of the display time slot
     if (isset($_GET['temps'])) {
         switch ($_GET['temps']) {
             case "tous":
+                // formats the date as datetime in the present and in the past
                 $tps = Calcul::laDate(CHOIX_DATE["tous"]);
                 $letps = "le début";
                 break;
@@ -75,10 +77,13 @@ if (isset($_SESSION['myidsession']) && $_SESSION['myidsession'] == session_id())
         $letps = "le début";
     }
 
+    // if we are a student
     if($_SESSION['perm']==0){
 
+        // go to student controller
         require "../controller/stagController.php";
 
+        // stop the script
         exit();
     }
 

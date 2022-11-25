@@ -13,6 +13,7 @@ class Calcul
         return $retour;
     }
 
+    //
     public static function laDate(int $days):string{
 
         $date = time() - ($days*60*60*24);
