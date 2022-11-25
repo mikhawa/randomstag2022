@@ -87,9 +87,10 @@ if (isset($_SESSION['myidsession']) && $_SESSION['myidsession'] == session_id())
         exit();
     }
 
-
+    // if you are an administrator, manage ajax requests
     if (isset($_GET['myfile'])) {
 
+        // ajax request
         switch ($_GET['myfile']):
             case "update":
                 require "../controller/update.php";
@@ -98,15 +99,20 @@ if (isset($_SESSION['myidsession']) && $_SESSION['myidsession'] == session_id())
                 require "../controller/load.php";
         endswitch;
     } else {
+        // go to admin controller
         require "../controller/privateController.php";
     }
 
+// if you are not correctly connected
 } else {
 
+    // disconnect and redirect
     if (isset($_GET['myfile'])) {
         if (UserManager::disconnect()) header("Location: ./");
         exit();
     } else {
+
+        // go to public controller
         require "../controller/publicController.php";
     }
 
