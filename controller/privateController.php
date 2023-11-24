@@ -29,11 +29,11 @@ if(isset($_GET['logs'])&&ctype_digit($_GET['logs'])){
 // homepage admin
 }else {
 
-    $recupAllStagiaires = Calcul::calculPoints($stagiairesManager->SelectOnlyStagiairesByIdAnnee(1, $tps));
+    $recupAllStagiaires = Calcul::calculPoints($stagiairesManager->SelectOnlyStagiairesByIdAnnee(2, $tps));
 
-    $recupStats = $statsManager->SelectStatsByAnneeAndDate(1, $tps);
+    $recupStats = $statsManager->SelectStatsByAnneeAndDate(2, $tps);
 
-    $recupOneStagiaire = $stagiairesManager->SelectOneRandomStagiairesByIdAnnee(1);
+    $recupOneStagiaire = $stagiairesManager->SelectOneRandomStagiairesByIdAnnee(2);
 
     if(is_string($recupAllStagiaires)) die($recupAllStagiaires);
     if(is_string($recupStats)) die($recupStats);

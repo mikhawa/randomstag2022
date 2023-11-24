@@ -27,7 +27,7 @@ function onLoadPage(idLoad, Lurl, num, temps) {
             document.getElementById(idLoad).innerHTML = "<img src='img/load.gif' alt='loading' />";
         }
     }
-    let idan = 1;
+    let idan = 2;
     num.open('POST', 'index.php?temps='+temps+'&myfile=load&partie=' + Lurl + '&idan=' + idan + '&cache=' + (new Date()).getTime(), true);
     num.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     num.send("temps=" + (new Date()).getTime(), true);
